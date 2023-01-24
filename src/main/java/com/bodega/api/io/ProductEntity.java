@@ -36,7 +36,7 @@ public class ProductEntity implements Serializable {
     @JoinColumn(name = "categoria_id", referencedColumnName = "id", insertable = false, updatable = false)
     private CategoryEntity category;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<SaleDetailEntity> saleDetails;
 
 }

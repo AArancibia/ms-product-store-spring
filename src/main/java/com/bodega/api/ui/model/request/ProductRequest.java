@@ -13,5 +13,4 @@ public class ProductRequest {
     private int quantity;
     private int unitPrice;
     private String image;
-    private UUID categoryId;
 }
