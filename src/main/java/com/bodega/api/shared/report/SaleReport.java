@@ -66,16 +66,14 @@ public class SaleReport {
     }
 
     public static JFreeChart generatePieChart(ReportSaleRequest saleDataReport) {
-        DefaultPieDataset dataSet = new DefaultPieDataset();
+        var dataSet = new DefaultPieDataset();
         for (MonthSaleReport month: saleDataReport.getMonths()) {
             if (month.getVenta() > 0) {
                 String message = month.getMonth() + " - S/. " + month.getVenta();
                 dataSet.setValue(message, month.getVenta());
             }
         }
-        JFreeChart chart = ChartFactory.createPieChart(
+        return ChartFactory.createPieChart(
                 "", dataSet, false, false, false);
-
-        return chart;
     }
 }

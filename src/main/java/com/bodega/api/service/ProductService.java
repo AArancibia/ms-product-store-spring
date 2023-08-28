@@ -9,6 +9,5 @@ import java.util.List;
 
 public interface ProductService {
     Flux<ProductDto> getProducts();
-    // ProductDto createProduct(ProductRequest createProductRequest);
     Mono<ProductDto> createProduct(ProductRequest createProductRequest);
 }

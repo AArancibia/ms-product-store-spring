@@ -2,6 +2,8 @@ package com.bodega.api.io;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -9,13 +11,14 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "categoria")
 @JsonIgnoreProperties({ "products" })
 public class CategoryEntity implements Serializable {
     @Id
-    @Type(type="org.hibernate.type.PostgresUUIDType")
+    @Type(type="uuid-char")
     @Column(name = "id", columnDefinition = "uuid")
     private UUID id;
 

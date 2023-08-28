@@ -1,7 +1,6 @@
 package com.bodega.api.ui.controller;
 
 import com.bodega.api.service.ProductService;
-import com.bodega.api.shared.dto.ProductDto;
 import com.bodega.api.ui.model.request.ProductRequest;
 import com.bodega.api.ui.model.response.ProductResponse;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +29,7 @@ public class ProductController {
     @PostMapping
     public Mono<ProductResponse> createProduct(@RequestBody() ProductRequest productRequest) {
         log.info(productRequest.getName());
-        Mono<ProductDto> productDto = service.createProduct(productRequest);
-        return Mono.justOrEmpty(mapper.map(productDto, ProductResponse.class));
+        return service.createProduct(productRequest)
+          .map(productDto -> mapper.map(productDto, ProductResponse.class));
     }
 }
