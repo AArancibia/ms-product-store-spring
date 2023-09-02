@@ -17,7 +17,7 @@ CREATE TABLE `producto` (
   `precio_unitario` double NOT NULL,
   `cantidad` int NOT NULL,
   `imagen` varchar(150),
-  `categoria_id` UUID NOT NULL,
+  `categoria_id` UUID NULL,
   PRIMARY KEY (`id`)
 );
 

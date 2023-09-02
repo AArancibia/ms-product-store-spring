@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-nginxapp
+  labels:
+    app: frontend-nginxapp
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-nginxapp
+  template:
+    metadata:
+      # name: backend-restapp-pod
+      labels:
+        app: frontend-nginxapp
+        tier: frontend
+    spec:
+      containers:
+        - name: frontend-nginxapp
+          image: stacksimplify/kube-frontend-nginx:1.0.0
+          ports:
+            - containerPort: 80

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-backend-service # IMPORTANT: name mapped in nginx proxy pass
+  labels:
+    app: backend-restapp
+    tier: backend
+spec:
+  # type: ClusterIP is default service
+  selector:
+    app: backend-restapp
+  ports:
+    - name: http
+      port: 8080 # Cluster IP Service
+      targetPort: 8020 # Container Port

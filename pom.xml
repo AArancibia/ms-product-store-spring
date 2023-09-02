@@ -96,7 +96,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>arancibia/${project.artifactId}:0.0.1</name>
+						<name>arancibia/${project.artifactId}</name>
 					</image>
 					<excludes>
 						<exclude>
