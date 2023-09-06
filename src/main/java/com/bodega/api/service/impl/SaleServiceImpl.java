@@ -1,5 +1,6 @@
 package com.bodega.api.service.impl;
 
+import com.bodega.api.config.BodegaServiceConfig;
 import com.bodega.api.io.SaleDetailEntity;
 import com.bodega.api.io.SaleEntity;
 import com.bodega.api.repository.SaleRepository;
@@ -32,6 +33,7 @@ public class SaleServiceImpl implements SaleService {
 
     private final SaleRepository repository;
     private final ModelMapper mapper;
+    private final BodegaServiceConfig config;
 
     @Override
     public void buildReportSales(ReportSaleRequest saleDataReport, HttpServletResponse response) {
@@ -66,7 +68,7 @@ public class SaleServiceImpl implements SaleService {
         .boxed()
         .map(month -> {
           var monthSale = new ReportSaleResponse.ReportMonthSales();
-          Locale spanishLocale=new Locale("es", "ES");
+          Locale spanishLocale= new Locale(config.getLanguage(), config.getCountry());
           var monthName = LocalDate.now().with(ChronoField.MONTH_OF_YEAR, month)
             .getMonth()
             .getDisplayName(TextStyle.FULL, spanishLocale);

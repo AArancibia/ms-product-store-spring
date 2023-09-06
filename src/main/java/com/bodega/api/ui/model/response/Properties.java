@@ -1,0 +1,13 @@
+package com.bodega.api.ui.model.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter @Setter @ToString
+@AllArgsConstructor
+public class Properties {
+  private String language;
+  private String country;
+}
