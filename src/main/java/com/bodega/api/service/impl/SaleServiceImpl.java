@@ -9,6 +9,7 @@ import com.bodega.api.shared.dto.SaleDto;
 import com.bodega.api.shared.report.SaleReport;
 import com.bodega.api.ui.model.request.ReportSaleRequest;
 import com.bodega.api.ui.model.response.ReportSaleResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +17,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.TextStyle;

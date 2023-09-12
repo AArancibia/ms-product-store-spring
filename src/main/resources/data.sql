@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS categoria;
 
 CREATE TABLE `categoria` (
-                             `id` UUID NOT NULL,
+                             `id` varchar(36) NOT NULL,
                              `nombre` varchar(100) NOT NULL,
                              PRIMARY KEY (`id`)
 );
@@ -12,12 +12,12 @@ VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'abarrotes');
 DROP TABLE IF EXISTS producto;
 
 CREATE TABLE `producto` (
-  `id` UUID NOT NULL,
+  `id` varchar(36) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `precio_unitario` double NOT NULL,
   `cantidad` int NOT NULL,
   `imagen` varchar(150),
-  `categoria_id` UUID NULL,
+  `categoria_id` varchar(36) NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -37,7 +37,7 @@ VALUES ('528062d9-0bf7-41b2-92f5-d807b7472f19', 'aceite', 8, 15, 'https://wongfo
 DROP TABLE IF EXISTS venta;
 
 CREATE TABLE `venta` (
-    `id` UUID NOT NULL,
+    `id` varchar(36) NOT NULL,
     `code` varchar(100) NOT NULL,
     `precio_venta` double NOT NULL,
     `fecha_venta` DATETIME NOT NULL,
@@ -59,11 +59,11 @@ VALUES ('f93b70c1-6f44-4807-9ab0-0e151a1392cd', '1667983402831', 15, '2023-12-09
 DROP TABLE IF EXISTS detalleventa;
 
 CREATE TABLE `detalleventa` (
-                         `id` UUID NOT NULL,
+                         `id` varchar(36) NOT NULL,
                          `precio` DOUBLE NOT NULL,
                          `cantidad` int NOT NULL,
-                         `venta_id` UUID NOT NULL,
-                         `producto_id` UUID NOT NULL,
+                         `venta_id` varchar(36) NOT NULL,
+                         `producto_id` varchar(36) NOT NULL,
                          PRIMARY KEY (`id`)
 );
 

@@ -1,9 +1,10 @@
 package com.bodega.api.io;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.*;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +15,6 @@ import java.util.UUID;
 @Table(name="venta")
 public class SaleEntity implements Serializable {
     @Id
-    @Type(type="uuid-char")
     private UUID id;
 
     @Column(name = "code")

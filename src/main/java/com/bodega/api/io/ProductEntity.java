@@ -1,11 +1,9 @@
 package com.bodega.api.io;
 
-import lombok.Data;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
@@ -15,8 +13,8 @@ import java.util.UUID;
 @Entity
 @Table(name = "producto")
 public class ProductEntity implements Serializable {
+
     @Id
-    @Type(type="uuid-char")
     public UUID id;
 
     @Column(name = "nombre")
@@ -31,8 +29,8 @@ public class ProductEntity implements Serializable {
     @Column(name = "imagen")
     private String image;
 
-    @Type(type="uuid-char")
-    @Column(name = "categoria_id", columnDefinition = "uuid")
+    // @Type(type="uuid-char")
+    @Column(name = "categoria_id")
     private UUID categoryId;
 
     @ManyToOne(fetch = FetchType.EAGER)
