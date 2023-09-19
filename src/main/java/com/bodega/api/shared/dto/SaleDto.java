@@ -13,8 +13,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class SaleDto {
     private UUID id;
-    private String code;
     private int salePrice;
+    private String paypalId;
     private LocalDateTime dateRegister;
     private List<SaleDetailDto> saleDetail;
 }

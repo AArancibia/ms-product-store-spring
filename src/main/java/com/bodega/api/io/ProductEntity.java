@@ -1,6 +1,5 @@
 package com.bodega.api.io;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;

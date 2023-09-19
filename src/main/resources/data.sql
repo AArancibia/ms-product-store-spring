@@ -38,23 +38,23 @@ DROP TABLE IF EXISTS venta;
 
 CREATE TABLE `venta` (
     `id` UUID NOT NULL,
-    `code` varchar(100) NOT NULL,
+    `paypal_id` varchar(120) NULL,
     `precio_venta` double NOT NULL,
     `fecha_venta` DATETIME NOT NULL,
     PRIMARY KEY (`id`)
 );
 
-INSERT INTO `venta` (`id`, `code`, `precio_venta`, `fecha_venta`)
-VALUES ('69122408-65bf-4512-bad7-1032f7325191', '1667963249433', 8, '2022-11-09T03:07:29.337Z');
+INSERT INTO `venta` (`id`, `precio_venta`, `fecha_venta`)
+VALUES ('69122408-65bf-4512-bad7-1032f7325191', 8, '2022-11-09T03:07:29.337Z');
 
-INSERT INTO `venta` (`id`, `code`, `precio_venta`, `fecha_venta`)
-VALUES ('fb091f61-af9a-4ae2-b24b-ac1fae88a929', '1667963703045', 20, '2022-11-09T03:15:02.878Z');
+INSERT INTO `venta` (`id`, `precio_venta`, `fecha_venta`)
+VALUES ('fb091f61-af9a-4ae2-b24b-ac1fae88a929', 20, '2022-11-09T03:15:02.878Z');
 
-INSERT INTO `venta` (`id`, `code`, `precio_venta`, `fecha_venta`)
-VALUES ('a2ed0aaf-3299-48ba-bf40-ce6f1b9ec2fe', '1667963703831', 10, '2022-12-09T03:15:02.878Z');
+INSERT INTO `venta` (`id`, `precio_venta`, `fecha_venta`)
+VALUES ('a2ed0aaf-3299-48ba-bf40-ce6f1b9ec2fe', 10, '2022-12-09T03:15:02.878Z');
 
-INSERT INTO `venta` (`id`, `code`, `precio_venta`, `fecha_venta`)
-VALUES ('f93b70c1-6f44-4807-9ab0-0e151a1392cd', '1667983402831', 15, '2023-12-09T03:15:02.878Z');
+INSERT INTO `venta` (`id`, `precio_venta`, `fecha_venta`)
+VALUES ('f93b70c1-6f44-4807-9ab0-0e151a1392cd', 15, '2023-12-09T03:15:02.878Z');
 
 DROP TABLE IF EXISTS detalleventa;
 

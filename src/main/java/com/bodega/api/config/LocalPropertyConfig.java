@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "locale")
 @Getter @Setter @ToString
-public class BodegaServiceConfig {
+public class LocalPropertyConfig {
   private String language;
   private String country;
 }

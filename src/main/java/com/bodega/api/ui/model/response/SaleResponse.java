@@ -10,7 +10,6 @@ import java.util.UUID;
 @Setter
 public class SaleResponse {
   private UUID id;
-  private String code;
   private int salePrice;
   private LocalDateTime dateRegister;
 }

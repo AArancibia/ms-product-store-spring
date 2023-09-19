@@ -1,6 +1,7 @@
 package com.bodega.api.ui.controller;
 
-import com.bodega.api.config.BodegaServiceConfig;
+import com.bodega.api.config.LocalPropertyConfig;
+import com.bodega.api.shared.dto.ProductDto;
 import com.bodega.api.ui.model.response.Properties;
 import com.bodega.api.service.ProductService;
 import com.bodega.api.ui.model.request.ProductRequest;
@@ -24,7 +25,7 @@ public class ProductController {
 
     private final ProductService service;
     private final ModelMapper mapper;
-    private final BodegaServiceConfig config;
+    private final LocalPropertyConfig config;
 
     @GetMapping
     public Flux<ProductResponse> getProducts() {
@@ -38,12 +39,9 @@ public class ProductController {
         Properties properties = new Properties(config.getLanguage(), config.getCountry());
         return ow.writeValueAsString(properties);
     }
-
-
     @PostMapping
     public Mono<ProductResponse> createProduct(@RequestBody() ProductRequest productRequest) {
-        log.info(productRequest.getName());
-        return service.createProduct(productRequest)
+        return service.saveProduct(mapper.map(productRequest, ProductDto.class))
           .map(productDto -> mapper.map(productDto, ProductResponse.class));
     }
 }

@@ -10,7 +10,8 @@ import java.util.UUID;
 public class ProductRequest {
     private UUID id;
     private String name;
-    private int quantity;
     private int unitPrice;
+    private int quantity;
     private String image;
+    private UUID categoryId;
 }

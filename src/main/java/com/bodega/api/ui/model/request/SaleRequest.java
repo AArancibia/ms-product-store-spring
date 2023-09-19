@@ -11,7 +11,6 @@ import java.util.UUID;
 @Setter
 public class SaleRequest {
   private UUID id;
-  private String code;
   private int salePrice;
   private LocalDateTime dateRegister;
   private List<SaleDetailRequest> saleDetail;
