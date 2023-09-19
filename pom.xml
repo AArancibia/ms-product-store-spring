@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bodega.api</groupId>
-	<artifactId>BodegaAppApiService</artifactId>
+	<artifactId>bodegastore</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>BodegaAppApiService</name>
 	<description>BodegaAppApiService</description>
@@ -95,6 +95,9 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<image>
+						<name>arancibia/${project.artifactId}:0.0.1</name>
+					</image>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
