@@ -5,4 +5,5 @@ import reactor.core.publisher.Mono;
 
 public interface AuthService {
   Mono<UserDto> saveUser(UserDto user);
+  UserDto finByEmail(String email);
 }
