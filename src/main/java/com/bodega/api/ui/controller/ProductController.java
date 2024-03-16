@@ -30,7 +30,7 @@ public class ProductController {
     @PostMapping
     public Mono<ProductResponse> createProduct(@RequestBody() ProductRequest productRequest) {
         log.info(productRequest.getName());
-        Mono<ProductDto> productDto = service.createProduct(productRequest);
-        return Mono.justOrEmpty(mapper.map(productDto, ProductResponse.class));
+        return service.createProduct(productRequest)
+            .map(productDto -> mapper.map(productDto, ProductResponse.class));
     }
 }
