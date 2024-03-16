@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.bodega.api</groupId>
 	<artifactId>bodegastore</artifactId>
-	<version>0.0.2</version>
+	<version>2.0.0</version>
 	<name>BodegaAppApiService</name>
 	<description>BodegaAppApiService</description>
 	<properties>
@@ -117,7 +117,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>arancibia/${project.artifactId}</name>
+						<name>arancibia/${project.artifactId}:${project.version}</name>
 					</image>
 					<excludes>
 						<exclude>
