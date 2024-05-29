@@ -7,6 +7,7 @@ import com.bodega.api.io.SaleEntity;
 import com.bodega.api.repository.SaleRepository;
 import com.bodega.api.service.ProductService;
 import com.bodega.api.service.SaleService;
+import com.bodega.api.service.client.SaleFeignClient;
 import com.bodega.api.shared.dto.ProductDto;
 import com.bodega.api.shared.dto.SaleDto;
 import com.bodega.api.shared.report.SaleReport;
@@ -20,7 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,21 +50,10 @@ public class SaleServiceImpl implements SaleService {
     private final LocalPropertyConfig config;
     private final WebClient webClient;
     private final PaypalPropertyConfig paypalPropertyConfig;
+    private final SaleFeignClient saleFeignClient;
   @Override
-  public Mono<PaypalCreateOrderResponse> createOrder(CreateOrderRequest request) {
-    String basicAuthHeader = "basic " + Base64Utils.encodeToString((paypalPropertyConfig.getClientId() + ":" + paypalPropertyConfig.getSecret()).getBytes());
-    return webClient
-      .post()
-      .uri(paypalPropertyConfig.getUrlV2() + "/checkout/orders")
-      .header("Prefer", "return=representation")
-      .header("PayPal-Request-Id", UUID.randomUUID().toString())
-      .header(HttpHeaders.AUTHORIZATION, basicAuthHeader)
-      .bodyValue(request)
-      .retrieve()
-      .onStatus(HttpStatus::is4xxClientError, clientResponse -> clientResponse
-        .bodyToMono(String.class)
-        .flatMap(errorResponse -> Mono.error(new RuntimeException(errorResponse))))
-      .bodyToMono(PaypalCreateOrderResponse.class);
+  public PaypalCreateOrderResponse createOrder(CreateOrderRequest request) {
+    return saleFeignClient.createOrder(request);
   }
 
   @Transactional

@@ -30,7 +30,7 @@ public class SaleController {
     private final ModelMapper mapper;
 
     @PostMapping("order")
-    public Mono<PaypalCreateOrderResponse> createOrder(@RequestBody CreateOrderRequest request) {
+    public PaypalCreateOrderResponse createOrder(@RequestBody CreateOrderRequest request) {
         return service.createOrder(request);
     }
 

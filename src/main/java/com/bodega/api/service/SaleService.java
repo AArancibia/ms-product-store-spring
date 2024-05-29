@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface SaleService {
-    Mono<PaypalCreateOrderResponse> createOrder(CreateOrderRequest request);
+    PaypalCreateOrderResponse createOrder(CreateOrderRequest request);
     Mono<PaypalCreateOrderResponse> captureOrder(String paypalId, SaleRequest request);
     void buildReportSales(ReportSaleRequest saleDataReport, HttpServletResponse response);
     List<ReportSaleResponse> generateReportSales();
