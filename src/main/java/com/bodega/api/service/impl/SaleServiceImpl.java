@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.servlet.http.HttpServletResponse;
@@ -67,7 +68,7 @@ public class SaleServiceImpl implements SaleService {
         .map(month -> {
           var monthSale = new ReportSaleResponse.ReportMonthSales();
           Locale spanishLocale=new Locale("es", "ES");
-          var monthName = LocalDate.now().with(ChronoField.MONTH_OF_YEAR, month)
+          var monthName = LocalDate.now().with(ChronoField.MONTH_OF_YEAR, month) // ToDo
             .getMonth()
             .getDisplayName(TextStyle.FULL, spanishLocale);
           monthSale.setMonth(StringUtils.capitalize(monthName.toLowerCase()));
@@ -109,4 +110,11 @@ public class SaleServiceImpl implements SaleService {
         var savedSale = repository.save(saleEntity);
         return Mono.just(mapper.map(savedSale, SaleDto.class));
     }
+
+  @Override
+  public Flux<SaleDto> getSalesByUserId(UUID userId) {
+    var salesByUser = repository.findByUserId(userId);
+    return Flux.fromIterable(salesByUser)
+      .map(saleEntity -> mapper.map(saleEntity, SaleDto.class));
+  }
 }

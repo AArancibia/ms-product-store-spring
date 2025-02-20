@@ -1,6 +1,7 @@
 package com.bodega.api.io;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -9,7 +10,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name="venta")
 public class SaleEntity implements Serializable {
@@ -28,5 +30,13 @@ public class SaleEntity implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sale")
     private List<SaleDetailEntity> saleDetail;
+
+    @Type(type="uuid-char")
+    @Column(name = "usuario_id", columnDefinition = "uuid")
+    private UUID userId;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private UserEntity user;
 
 }

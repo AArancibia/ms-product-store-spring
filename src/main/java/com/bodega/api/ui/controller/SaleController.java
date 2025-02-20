@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.servlet.http.HttpServletResponse;
@@ -17,9 +18,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
-@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("sale")
@@ -27,9 +28,13 @@ public class SaleController {
     private final SaleService service;
     private final ModelMapper mapper;
 
-    @PostMapping("reporte/pdf")
-    public void generateReportPDF(@RequestBody() ReportSaleRequest saleDataReport, HttpServletResponse response) {
-        response.setContentType("application/pdf");
+    @PostMapping("reporteFile")
+    public void generateReportPDF(
+      @RequestBody() ReportSaleRequest saleDataReport, HttpServletResponse response,
+      @RequestParam("contentType") String contentType
+    ) {
+        log.info("contentType: {}", contentType);
+        response.setContentType("application/" + contentType);
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
         String headerKey = "Content-Disposition";
@@ -46,6 +51,12 @@ public class SaleController {
     @PostMapping
     public Mono<SaleResponse> save(@RequestBody() SaleRequest saleRequest) {
         return service.save(mapper.map(saleRequest, SaleDto.class))
+          .map(saleDto -> mapper.map(saleDto, SaleResponse.class));
+    }
+
+    @GetMapping("/user/{id}")
+    public Flux<SaleResponse> getSalesByUserId(@PathVariable UUID id) {
+        return service.getSalesByUserId(id)
           .map(saleDto -> mapper.map(saleDto, SaleResponse.class));
     }
 }

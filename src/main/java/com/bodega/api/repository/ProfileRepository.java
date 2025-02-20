@@ -1,6 +1,6 @@
 package com.bodega.api.repository;
 
-import com.bodega.api.io.SaleEntity;
+import com.bodega.api.io.ProfileEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface SaleRepository extends JpaRepository<SaleEntity, UUID> {
-  List<SaleEntity> findByUserId(UUID userId);
+public interface ProfileRepository extends JpaRepository<ProfileEntity, UUID> {
+  List<ProfileEntity> findAllByGeneralIsTrue();
 }
