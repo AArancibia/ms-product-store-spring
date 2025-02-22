@@ -68,7 +68,7 @@ public class SaleServiceImpl implements SaleService {
         .map(month -> {
           var monthSale = new ReportSaleResponse.ReportMonthSales();
           Locale spanishLocale=new Locale("es", "ES");
-          var monthName = LocalDate.now().with(ChronoField.MONTH_OF_YEAR, month) // ToDo
+          var monthName = LocalDate.now().withMonth(month)
             .getMonth()
             .getDisplayName(TextStyle.FULL, spanishLocale);
           monthSale.setMonth(StringUtils.capitalize(monthName.toLowerCase()));
