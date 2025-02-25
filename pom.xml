@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.bodega.api</groupId>
 	<artifactId>bodegastore</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>BodegaAppApiService</name>
 	<description>BodegaAppApiService</description>
 	<properties>
