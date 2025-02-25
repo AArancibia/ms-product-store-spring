@@ -2,9 +2,8 @@ package com.bodega.api.io;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -15,7 +14,6 @@ import java.util.UUID;
 public class UserProfileEntity implements Serializable {
 
   @Id
-  @Type(type="uuid-char")
   @Column(name = "usuario_id", columnDefinition = "uuid")
   private UUID userId;
 
@@ -24,7 +22,7 @@ public class UserProfileEntity implements Serializable {
   private UserEntity user;
 
   @Id
-  @Type(type="uuid-char")
+  
   @Column(name = "accesos_id", columnDefinition = "uuid")
   private UUID profileId;
 

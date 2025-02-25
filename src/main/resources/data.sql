@@ -1,4 +1,4 @@
-/*DROP TABLE IF EXISTS usuario;
+DROP TABLE IF EXISTS usuario;
 
 CREATE TABLE `usuario` (
                              `id` UUID NOT NULL,
@@ -8,11 +8,11 @@ CREATE TABLE `usuario` (
                              `telefono` varchar(20) NOT NULL,
                              PRIMARY KEY (`id`)
 );
-*/
+
 INSERT INTO `usuario` (`id`, `nombres`, `apellido_paterno`, `apellido_materno`, `telefono`)
 VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'Alexis Joel', 'Arancibia', 'Sanchez', '994661485');
 
-/*DROP TABLE IF EXISTS accesos;
+DROP TABLE IF EXISTS accesos;
 
 CREATE TABLE `accesos` (
                            `id` UUID NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE `accesos` (
                            `descripcion` varchar(50) NOT NULL,
                            `general` boolean NOT NULL,
                            PRIMARY KEY (`id`)
-);*/
+);
 
 INSERT INTO `accesos` (`id`, `ruta`, `icono`, `descripcion`, `general`)
 VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', '/', 'HomeOutlined', 'Listado de productos', true);
@@ -32,14 +32,14 @@ VALUES ('7aee4a7d-b3b1-40e0-8abf-f5e2ee934deb', '/carrito', 'ShoppingOutlined', 
 INSERT INTO `accesos` (`id`, `ruta`, `icono`, `descripcion`, `general`)
 VALUES ('a0cfc7df-4cb4-49a3-922e-384b7ec3d91b', '/reporte', 'ShoppingOutlined', 'Reporte de venta', false);
 
-/*DROP TABLE IF EXISTS usuarios_accesos;
+DROP TABLE IF EXISTS usuarios_accesos;
 
 CREATE TABLE `usuarios_accesos` (
                            `usuario_id` varchar(50) NOT NULL,
                            `accesos_id` varchar(50) NOT NULL,
                                PRIMARY KEY (`usuario_id`, `accesos_id`)
 );
-*/
+
 INSERT INTO `usuarios_accesos` (`usuario_id`, `accesos_id`)
 VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', '5452ae64-59ad-4ccd-bef4-7424293baee5');
 
@@ -49,18 +49,18 @@ VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', '7aee4a7d-b3b1-40e0-8abf-f5e2ee9
 INSERT INTO `usuarios_accesos` (`usuario_id`, `accesos_id`)
 VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'a0cfc7df-4cb4-49a3-922e-384b7ec3d91b');
 
-/*DROP TABLE IF EXISTS categoria;
+DROP TABLE IF EXISTS categoria;
 
 CREATE TABLE `categoria` (
                              `id` UUID NOT NULL,
                              `nombre` varchar(100) NOT NULL,
                              PRIMARY KEY (`id`)
-);*/
+);
 
 INSERT INTO `categoria` (`id`, `nombre`)
 VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'abarrotes');
 
-/*DROP TABLE IF EXISTS producto;
+DROP TABLE IF EXISTS producto;
 
 CREATE TABLE `producto` (
   `id` UUID NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE `producto` (
   `imagen` varchar(150),
   `categoria_id` UUID NULL,
   PRIMARY KEY (`id`)
-);*/
+);
 
 INSERT INTO `producto` (`id`, `nombre`, `precio_unitario`, `cantidad`, `imagen`, `categoria_id`)
  VALUES ('694158a1-b534-4102-a7a0-a350d6677f9e', 'coca cola', 6, 45, 'https://miamarket.pe/assets/uploads/221b9e347e36d61ed6a9ebb525b94f0d.jpg', '5452ae64-59ad-4ccd-bef4-7424293baee5');
@@ -85,7 +85,7 @@ INSERT INTO `producto` (`id`, `nombre`, `precio_unitario`, `cantidad`, `imagen`,
 VALUES ('528062d9-0bf7-41b2-92f5-d807b7472f19', 'aceite', 8, 15, 'https://wongfood.vtexassets.com/arquivos/ids/562541-800-auto?v=637932589970800000&width=800&height=auto&aspect=true', '5452ae64-59ad-4ccd-bef4-7424293baee5');
 
 
-/*DROP TABLE IF EXISTS venta;
+DROP TABLE IF EXISTS venta;
 
 CREATE TABLE `venta` (
     `id` UUID NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE `venta` (
     `fecha_venta` DATETIME NOT NULL,
     `usuario_id` UUID NOT NULL,
     PRIMARY KEY (`id`)
-);*/
+);
 
 INSERT INTO `venta` (`id`, `code`, `precio_venta`, `fecha_venta`, `usuario_id`)
 VALUES ('69122408-65bf-4512-bad7-1032f7325191', '1667963249433', 8, '2022-11-09T03:07:29.337Z', '5452ae64-59ad-4ccd-bef4-7424293baee5');
@@ -108,7 +108,7 @@ VALUES ('a2ed0aaf-3299-48ba-bf40-ce6f1b9ec2fe', '1667963703831', 10, '2022-12-09
 INSERT INTO `venta` (`id`, `code`, `precio_venta`, `fecha_venta`, `usuario_id`)
 VALUES ('f93b70c1-6f44-4807-9ab0-0e151a1392cd', '1667983402831', 15, '2023-12-09T03:15:02.878Z', '5452ae64-59ad-4ccd-bef4-7424293baee5');
 
-/*DROP TABLE IF EXISTS detalleventa;
+DROP TABLE IF EXISTS detalleventa;
 
 CREATE TABLE `detalleventa` (
                          `id` UUID NOT NULL,
@@ -117,7 +117,7 @@ CREATE TABLE `detalleventa` (
                          `venta_id` UUID NOT NULL,
                          `producto_id` UUID NOT NULL,
                          PRIMARY KEY (`id`)
-);*/
+);
 
 INSERT INTO `detalleventa` (`id`, `precio`, `cantidad`, `venta_id`, `producto_id`)
 VALUES ('ab26d461-49e2-4736-803e-71a5fe616645', 3, 8, '69122408-65bf-4512-bad7-1032f7325191', '694158a1-b534-4102-a7a0-a350d6677f9e');
