@@ -2,25 +2,34 @@ package com.bodega.api.ui.controller;
 
 import com.bodega.api.io.UserEntity;
 import com.bodega.api.service.UserService;
+import com.bodega.api.shared.dto.UserDto;
+import com.bodega.api.ui.model.request.UserRequest;
+import com.bodega.api.ui.model.response.UserResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("usuario")
+@RequestMapping("user")
 public class UserController {
 
   private final UserService userService;
+  private final ModelMapper mapper;
 
   @GetMapping("/{id}/accesos")
   public Flux<UserEntity> getProfiles(@PathVariable UUID id) {
     return userService.getUserProfiles(id);
+  }
+
+  @PostMapping("/register")
+  public Mono<UserResponse> registerUser(@RequestBody UserRequest user) {
+    return userService.registerUser(mapper.map(user, UserDto.class))
+      .map(userDto -> mapper.map(userDto, UserResponse.class));
   }
 
 }

@@ -4,13 +4,18 @@ CREATE TABLE `usuario` (
                              `id` UUID NOT NULL,
                              `nombres` varchar(50) NOT NULL,
                              `apellido_paterno` varchar(100) NOT NULL,
-                             `apellido_materno` varchar(100) NOT NULL,
-                             `telefono` varchar(20) NOT NULL,
+                             `apellido_materno` varchar(100),
+                             `username` varchar(50),
+                             `email` varchar(40),
+                             `password` varchar(40),
+                             `telefono` varchar(20),
+                             `isGoogleAccount` boolean,
                              PRIMARY KEY (`id`)
 );
 
-INSERT INTO `usuario` (`id`, `nombres`, `apellido_paterno`, `apellido_materno`, `telefono`)
-VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'Alexis Joel', 'Arancibia', 'Sanchez', '994661485');
+INSERT INTO `usuario`
+    (`id`, `nombres`, `apellido_paterno`, `apellido_materno`, `email`, `username`, `telefono`, `isGoogleAccount`)
+VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'Alexis Joel', 'Arancibia', 'Sanchez', 'alexis2396@hotmail.com', 'aarancis','994661485', false);
 
 DROP TABLE IF EXISTS accesos;
 
