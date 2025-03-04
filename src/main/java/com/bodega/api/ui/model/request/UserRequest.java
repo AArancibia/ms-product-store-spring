@@ -14,4 +14,6 @@ public class UserRequest {
   String surname;
   String email;
   String telephone;
+  String username;
+  Boolean isGoogleAccount;
 }

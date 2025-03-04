@@ -13,4 +13,6 @@ public class UserResponse {
   String lastName;
   String surname;
   String telephone;
+  String username;
+  Boolean isGoogleAccount;
 }
