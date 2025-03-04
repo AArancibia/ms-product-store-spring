@@ -6,6 +6,7 @@ import com.bodega.api.ui.model.request.ReportSaleRequest;
 import com.bodega.api.ui.model.request.SaleRequest;
 import com.bodega.api.ui.model.response.ReportSaleResponse;
 import com.bodega.api.ui.model.response.SaleResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.servlet.http.HttpServletResponse;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
