@@ -30,4 +30,10 @@ public class UserServiceImpl implements UserService {
     var userDb = userRepository.save(mapper.map(userDto, UserEntity.class));
     return Mono.just(mapper.map(userDb, UserDto.class));
   }
+
+  @Override
+  public Mono<UserDto> findUserByUsername(String username) {
+    var userDb = userRepository.findByUsername(username);
+    return Mono.just(mapper.map(userDb, UserDto.class));
+  }
 }

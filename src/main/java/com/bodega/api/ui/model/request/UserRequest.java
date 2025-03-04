@@ -9,11 +9,11 @@ import java.util.UUID;
 @Setter
 public class UserRequest {
   private UUID id;
-  String givenName;
-  String lastName;
-  String surname;
-  String email;
-  String telephone;
-  String username;
-  Boolean isGoogleAccount;
+  private String givenName;
+  private String lastName;
+  private String surname;
+  private String email;
+  private String telephone;
+  private String username;
+  private Boolean isGoogleAccount;
 }

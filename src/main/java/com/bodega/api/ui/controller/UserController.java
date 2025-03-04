@@ -26,6 +26,12 @@ public class UserController {
     return userService.getUserProfiles(id);
   }
 
+  @PostMapping("/{username}")
+  public Mono<UserResponse> registerUser(@PathVariable String username) {
+    return userService.findUserByUsername(username)
+      .map(userDto -> mapper.map(userDto, UserResponse.class));
+  }
+
   @PostMapping("/register")
   public Mono<UserResponse> registerUser(@RequestBody UserRequest user) {
     return userService.registerUser(mapper.map(user, UserDto.class))

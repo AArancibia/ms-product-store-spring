@@ -26,30 +26,30 @@ public class UserEntity implements Serializable {
   private UUID id;
 
   @Column(name = "nombres", nullable = false)
-  String givenName;
+  private String givenName;
 
   @Column(name = "apellido_paterno", nullable = false)
-  String lastName;
+  private String lastName;
 
   @Column(name = "apellido_materno")
-  String surname;
+  private String surname;
 
   @Column(name = "username", unique = true)
-  String username;
+  private String username;
 
   @Email
   @Column(name = "email", unique = true)
-  String email;
+  private String email;
 
   @JsonIgnore
   @Column
-  String password;
+  private String password;
 
   @Column(name = "telefono")
-  String telephone;
+  private String telephone;
 
   @Column(name = "isGoogleAccount")
-  Boolean isGoogleAccount;
+  private Boolean isGoogleAccount;
 
   @CreationTimestamp
   @Column(updatable = false)

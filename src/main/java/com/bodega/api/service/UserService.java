@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface UserService {
   Flux<UserEntity> getUserProfiles(UUID userId);
   Mono<UserDto> registerUser(UserDto userDto);
+  Mono<UserDto> findUserByUsername(String username);
 }
