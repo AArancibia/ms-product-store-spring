@@ -4,6 +4,7 @@ import com.bodega.api.io.UserEntity;
 import com.bodega.api.repository.UserRepository;
 import com.bodega.api.service.UserService;
 import com.bodega.api.shared.dto.UserDto;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -33,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public Mono<UserDto> findUserByUsername(String username) {
-    var userDb = userRepository.findByUsername(username);
+    var userDb = userRepository.findByUsername(username).orElseThrow(() -> new EntityNotFoundException("User not found, username: " + username));
     return Mono.just(mapper.map(userDb, UserDto.class));
   }
 }

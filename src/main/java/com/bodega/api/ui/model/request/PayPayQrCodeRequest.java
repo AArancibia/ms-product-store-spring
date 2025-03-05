@@ -12,4 +12,5 @@ import java.util.List;
 public class PayPayQrCodeRequest {
   private MoneyAmount amount;
   private List<MerchantOrderItem> orderItems;
+  private String description;
 }
