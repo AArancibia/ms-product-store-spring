@@ -15,7 +15,6 @@ import java.util.UUID;
 @Table(name="venta")
 public class SaleEntity implements Serializable {
     @Id
-    
     private UUID id;
 
     @Column(name = "code")
@@ -27,7 +26,10 @@ public class SaleEntity implements Serializable {
     @Column(name = "fecha_venta")
     private LocalDateTime dateRegister;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sale")
+    @Column(name = "paypal_id")
+    private String paypalId;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sale",  fetch = FetchType.EAGER)
     private List<SaleDetailEntity> saleDetail;
 
     @Column(name = "usuario_id", columnDefinition = "uuid")

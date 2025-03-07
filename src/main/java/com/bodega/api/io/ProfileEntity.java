@@ -16,7 +16,6 @@ import java.util.UUID;
 @Table(name = "accesos")
 public class ProfileEntity implements Serializable {
   @Id
-  
   private UUID id;
 
   @Column(name = "ruta", nullable = false)

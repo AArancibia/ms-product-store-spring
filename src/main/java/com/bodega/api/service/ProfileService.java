@@ -1,10 +1,12 @@
 package com.bodega.api.service;
 
-import com.bodega.api.io.ProfileEntity;
 import com.bodega.api.shared.dto.ProfileDto;
+import reactor.core.publisher.Flux;
 
-import java.util.List;
+import java.util.UUID;
+
 
 public interface ProfileService {
-  List<ProfileDto> getGeneralProfiles();
+  Flux<ProfileDto> getGeneralProfiles();
+  Flux<ProfileDto> getUserProfiles(UUID userId);
 }

@@ -18,6 +18,6 @@ public class PaymentController {
 
   @PostMapping("paypay/createQr")
   public ResponseEntity<QRCodeDetails> createQr(@RequestBody PayPayQrCodeRequest qrCodeRequest) throws ApiException {
-    return new ResponseEntity<>(paymentService.getQRCodeDetails(), HttpStatus.OK);
+    return new ResponseEntity<>(paymentService.getQRCodeDetails(qrCodeRequest), HttpStatus.OK);
   }
 }

@@ -2,7 +2,6 @@ package com.bodega.api.config;
 
 import jp.ne.paypay.ApiClient;
 import jp.ne.paypay.ApiException;
-import jp.ne.paypay.model.MoneyAmount;
 import jp.ne.paypay.model.QRCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,10 +30,8 @@ public class PayPayConfig {
   @Bean
   public QRCode createQrCode() {
     QRCode qrCode = new QRCode();
-    qrCode.setAmount(new MoneyAmount().amount(10).currency(MoneyAmount.CurrencyEnum.JPY));
     qrCode.setMerchantPaymentId(UUID.randomUUID().toString());
     qrCode.setCodeType("ORDER_QR");
-    qrCode.setOrderDescription("Mune's Favourite Cake");
     return qrCode;
   }
 }

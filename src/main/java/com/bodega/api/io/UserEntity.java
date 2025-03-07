@@ -1,6 +1,5 @@
 package com.bodega.api.io;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.Email;
@@ -8,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import jakarta.persistence.*;
-import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -28,36 +26,30 @@ public class UserEntity implements Serializable {
   private UUID id;
 
   @Column(name = "nombres", nullable = false)
-  String givenName;
+  private String givenName;
 
   @Column(name = "apellido_paterno", nullable = false)
-  String lastName;
+  private String lastName;
 
   @Column(name = "apellido_materno")
-  String surname;
+  private String surname;
 
   @Column(name = "username", unique = true)
-  String username;
+  private String username;
 
   @Email
   @Column(name = "email", unique = true)
-  String email;
+  private String email;
 
   @JsonIgnore
   @Column
-  String password;
+  private String password;
 
   @Column(name = "telefono")
-  String telephone;
+  private String telephone;
 
   @Column(name = "isGoogleAccount")
-  Boolean isGoogleAccount;
-
-  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-  @JoinColumn(name = "role_id", referencedColumnName = "id")
-  @JsonBackReference
-  @ToString.Exclude
-  private RoleEntity role;
+  private Boolean isGoogleAccount;
 
   @CreationTimestamp
   @Column(updatable = false)

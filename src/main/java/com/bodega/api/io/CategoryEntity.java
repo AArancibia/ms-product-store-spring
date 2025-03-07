@@ -3,8 +3,6 @@ package com.bodega.api.io;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
-
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -17,7 +15,6 @@ import java.util.UUID;
 @JsonIgnoreProperties({ "products" })
 public class CategoryEntity implements Serializable {
     @Id
-    
     @Column(name = "id", columnDefinition = "uuid")
     private UUID id;
 

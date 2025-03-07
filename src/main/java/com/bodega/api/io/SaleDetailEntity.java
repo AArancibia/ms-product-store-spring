@@ -16,7 +16,6 @@ import java.util.UUID;
 @JsonIgnoreProperties({ "sale", "product" })
 public class SaleDetailEntity implements Serializable {
     @Id
-    
     private UUID id;
 
     @Column(name = "precio")
@@ -32,7 +31,7 @@ public class SaleDetailEntity implements Serializable {
     @JoinColumn(name = "venta_id", referencedColumnName = "id", insertable = false, updatable = false)
     private SaleEntity sale;
 
-    
+
     @Column(name = "producto_id", columnDefinition = "uuid")
     private UUID productId;
 

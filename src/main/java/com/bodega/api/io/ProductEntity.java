@@ -14,7 +14,6 @@ import java.util.UUID;
 @Table(name = "producto")
 public class ProductEntity implements Serializable {
     @Id
-    
     public UUID id;
 
     @Column(name = "nombre")
@@ -29,7 +28,7 @@ public class ProductEntity implements Serializable {
     @Column(name = "imagen")
     private String image;
 
-    
+
     @Column(name = "categoria_id", columnDefinition = "uuid")
     private UUID categoryId;
 
