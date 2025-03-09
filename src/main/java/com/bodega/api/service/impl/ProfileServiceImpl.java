@@ -6,6 +6,7 @@ import com.bodega.api.service.ProfileService;
 import com.bodega.api.service.UserProfileService;
 import com.bodega.api.shared.dto.ProfileDto;
 import com.bodega.api.shared.dto.UserProfileDto;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -33,17 +34,12 @@ public class ProfileServiceImpl implements ProfileService {
 
   @Override
   public Flux<ProfileDto> getUserProfiles(UUID userId) {
-    return Mono.just(userId)
-      .map(userRepository::findById)
-      .flatMapMany(userEntity -> {
-        if (userEntity.isPresent()) {
-          return userProfileService.findByUserId(userId)
-            .map(UserProfileDto::getProfile)
-            .log();
-        } else {
-          return getGeneralProfiles();
-        }
-      })
+    return Mono.justOrEmpty(userRepository.findById(userId))
+      .switchIfEmpty(Mono.error(new EntityNotFoundException("User with id " + userId + " not found")))
+      .flatMapMany(userEntity -> userProfileService.findByUserId(userId)
+        .map(UserProfileDto::getProfile)
+        .log()
+      )
       .log();
   }
 }
