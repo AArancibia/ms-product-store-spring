@@ -106,6 +106,13 @@ public class SaleServiceImpl implements SaleService {
   }
 
   @Override
+  public Flux<SaleDto> getSalesByUser(UUID userId) {
+    var sales = repository.findAllByUserId(userId);
+    return Flux.fromIterable(sales)
+      .map(saleEntity -> mapper.map(saleEntity, SaleDto.class));
+  }
+
+  @Override
   public Mono<SaleDto> save(SaleDto saleDto) {
     var saleEntity = mapper.map(saleDto, SaleEntity.class);
     var saleDetails = saleDto
