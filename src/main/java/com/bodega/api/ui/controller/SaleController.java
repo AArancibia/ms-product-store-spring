@@ -13,12 +13,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -27,6 +29,12 @@ import java.util.List;
 public class SaleController {
     private final SaleService service;
     private final ModelMapper mapper;
+
+    @GetMapping("/user/{id}")
+    public Flux<SaleResponse> getSalesByUser(@PathVariable("id") UUID userId) {
+        return service.getSalesByUser(userId)
+          .map(sale -> mapper.map(sale, SaleResponse.class));
+    }
 
     @PostMapping("order")
     public Mono<PaypalCreateOrderResponse> createOrder(@RequestBody CreateOrderRequest request) {

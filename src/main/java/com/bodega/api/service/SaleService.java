@@ -12,6 +12,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface SaleService {
     Mono<PaypalCreateOrderResponse> createOrder(CreateOrderRequest request);
@@ -20,4 +21,5 @@ public interface SaleService {
     List<ReportSaleResponse> generateReportSales();
     Mono<SaleDto> save(SaleDto saleDto);
     Flux<ProductDto> updateProductStockByPaypalId(String paypalId);
+    Flux<SaleDto> getSalesByUser(UUID userId);
 }
