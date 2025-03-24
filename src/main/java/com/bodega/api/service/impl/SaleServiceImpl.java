@@ -93,7 +93,18 @@ public class SaleServiceImpl implements SaleService {
   @Override
   public Flux<ProductDto> updateProductStockByPaypalId(String paypalId) {
     var sales = repository.findAllByPaypalId(paypalId);
-    return Flux.fromIterable(sales.getSaleDetail())
+    return updateProductStock(sales.getSaleDetail());
+  }
+
+  @Transactional
+  @Override
+  public Flux<ProductDto> updateProductStockByCode(String code) {
+    var sales = repository.findAllByCode(code);
+    return updateProductStock(sales.getSaleDetail());
+  }
+
+  public Flux<ProductDto> updateProductStock(List<SaleDetailEntity> saleDetails) {
+    return Flux.fromIterable(saleDetails)
       .concatMap(saleDetailEntity -> {
         var product = productService.getProduct(saleDetailEntity.getProductId());
         return product

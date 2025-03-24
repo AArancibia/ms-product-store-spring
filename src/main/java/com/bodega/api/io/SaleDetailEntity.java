@@ -13,7 +13,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name="detalleventa")
-@JsonIgnoreProperties({ "sale", "product" })
+@JsonIgnoreProperties({ "sale" })
 public class SaleDetailEntity implements Serializable {
     @Id
     private UUID id;

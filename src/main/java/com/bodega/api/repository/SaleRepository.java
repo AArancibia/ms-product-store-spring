@@ -10,5 +10,6 @@ import java.util.UUID;
 @Repository
 public interface SaleRepository extends JpaRepository<SaleEntity, UUID> {
   SaleEntity findAllByPaypalId(String paypalId);
+  SaleEntity findAllByCode(String code);
   List<SaleEntity> findAllByUserId(UUID userId);
 }

@@ -13,4 +13,5 @@ public class SaleDetailResponse {
   private int quantity;
   private UUID saleId;
   private UUID productId;
+  private ProductResponse product;
 }

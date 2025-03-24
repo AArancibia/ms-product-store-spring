@@ -15,4 +15,5 @@ public class SaleDetailDto {
   private int quantity;
   private UUID saleId;
   private UUID productId;
+  private ProductDto product;
 }

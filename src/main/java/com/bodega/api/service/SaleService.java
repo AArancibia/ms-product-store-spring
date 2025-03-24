@@ -21,5 +21,6 @@ public interface SaleService {
     List<ReportSaleResponse> generateReportSales();
     Mono<SaleDto> save(SaleDto saleDto);
     Flux<ProductDto> updateProductStockByPaypalId(String paypalId);
+    Flux<ProductDto> updateProductStockByCode(String code);
     Flux<SaleDto> getSalesByUser(UUID userId);
 }
