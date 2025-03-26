@@ -88,17 +88,16 @@ CREATE TABLE producto (
 );
 
 INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
- VALUES ('694158a1-b534-4102-a7a0-a350d6677f9e', 'Coca Cola', 170, 45, 'https://miamarket.pe/assets/uploads/221b9e347e36d61ed6a9ebb525b94f0d.jpg', '5452ae64-59ad-4ccd-bef4-7424293baee5');
+VALUES ('694158a1-b534-4102-a7a0-a350d6677f9e', 'Coca Cola Botella de 500ml', 170, 45, 'https://miamarket.pe/assets/uploads/221b9e347e36d61ed6a9ebb525b94f0d.jpg', '5452ae64-59ad-4ccd-bef4-7424293baee5');
 
 INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
-VALUES ('dec2be3c-17d8-4ebb-b0d3-4014ff850bbf', 'Tuna', 160, 20, 'https://vivanda.vtexassets.com/arquivos/ids/360250/20257683.jpg?v=637818684454530000', '5452ae64-59ad-4ccd-bef4-7424293baee5');
+VALUES ('dec2be3c-17d8-4ebb-b0d3-4014ff850bbf', 'Filete de Atún Primor 140g', 160, 20, 'https://vivanda.vtexassets.com/arquivos/ids/360250/20257683.jpg?v=637818684454530000', '5452ae64-59ad-4ccd-bef4-7424293baee5');
 
 INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
-VALUES ('a0cfc7df-4cb4-49a3-922e-384b7ec3d91b', 'sal', 260, 25, 'https://plazavea.vteximg.com.br/arquivos/ids/197525-512-512/sal-marina-emsal-cocina-bolsa-1kg.jpg', '5452ae64-59ad-4ccd-bef4-7424293baee5');
+VALUES ('a0cfc7df-4cb4-49a3-922e-384b7ec3d91b', 'Sal Marina EMSAL Mesa Bolsa 1Kg', 260, 25, 'https://plazavea.vteximg.com.br/arquivos/ids/197525-512-512/sal-marina-emsal-cocina-bolsa-1kg.jpg', '5452ae64-59ad-4ccd-bef4-7424293baee5');
 
 INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
-VALUES ('528062d9-0bf7-41b2-92f5-d807b7472f19', 'aceite', 140, 15, 'https://wongfood.vtexassets.com/arquivos/ids/562541-800-auto?v=637932589970800000&width=800&height=auto&aspect=true', '5452ae64-59ad-4ccd-bef4-7424293baee5');
-
+VALUES ('528062d9-0bf7-41b2-92f5-d807b7472f19', 'Aceite Vegetal Primor 900ml', 140, 15, 'https://wongfood.vtexassets.com/arquivos/ids/711219-800-auto?v=638537399338230000&width=800&height=auto&aspect=true', '5452ae64-59ad-4ccd-bef4-7424293baee5');
 
 DROP TABLE IF EXISTS venta;
 
