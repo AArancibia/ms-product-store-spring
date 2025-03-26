@@ -14,7 +14,7 @@
 	<name>BodegaAppApiService</name>
 	<description>Microservice for bodega app</description>
 	<properties>
-		<java.version>23</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
