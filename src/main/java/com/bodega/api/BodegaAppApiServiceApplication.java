@@ -9,5 +9,4 @@ public class BodegaAppApiServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BodegaAppApiServiceApplication.class, args);
 	}
-
 }
