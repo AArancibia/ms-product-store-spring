@@ -1,3 +1,23 @@
+drop table if exists users cascade;
+drop table if exists authorities;
+
+create table users(username varchar(50) not null primary key,password varchar(500) not null,enabled boolean not null);
+create table authorities (username varchar(50) not null,authority varchar(50) not null,constraint fk_authorities_users foreign key(username) references users(username));
+create unique index ix_auth_username on authorities (username,authority);
+
+insert into users (username, password, enabled) values ('user', '{noop}EazyBytes@12345', '1');
+insert into authorities values ('user', 'read');
+
+
+insert into users (username, password, enabled) values ('admin', '{bcrypt}$2a$12$QdftGmBsEOlchyrmoEJoZ.pVmWJQ7W5thL/R/iUzzN5xoydnKWZyu', '1');
+insert into authorities values ('admin', 'admin');
+
+
+/*
+
+insert into customers (id, username, password, role, nombres, apellido_paterno) values ('d53e6af0-908d-46da-963d-c8eb9825ebb1', 'happy@bodegastore.com', '{noop}EazyBytes@12345', 'read', 'Alexis Joel', 'Arancibia');
+insert into customers (id, username, password, role, nombres, apellido_paterno) values ('953b0b7c-3115-4da0-a7a4-1087258f7134', 'admin@bodegastore.com', '{bcrypt}$2a$12$QdftGmBsEOlchyrmoEJoZ.pVmWJQ7W5thL/R/iUzzN5xoydnKWZyu', 'admin', 'Alexis Joel', 'Arancibia');
+
 DROP TABLE IF EXISTS usuario;
 
 CREATE TABLE usuario (
@@ -167,4 +187,4 @@ INSERT INTO detalleventa (id, precio, cantidad, venta_id, producto_id)
 VALUES ('763ce993-3af8-4e83-a573-92e462fcdddc', 160, 25, '4d5ddfb8-cbd8-46a5-b4da-85eb9fa04d28', 'dec2be3c-17d8-4ebb-b0d3-4014ff850bbf');
 
 INSERT INTO detalleventa (id, precio, cantidad, venta_id, producto_id)
-VALUES ('b0cd5b0e-1240-4de3-8faa-325e7ab63297', 160, 15, '586d11c1-e3a5-4f07-a687-d4bdbaf7330a', 'dec2be3c-17d8-4ebb-b0d3-4014ff850bbf');
+VALUES ('b0cd5b0e-1240-4de3-8faa-325e7ab63297', 160, 15, '586d11c1-e3a5-4f07-a687-d4bdbaf7330a', 'dec2be3c-17d8-4ebb-b0d3-4014ff850bbf');*/

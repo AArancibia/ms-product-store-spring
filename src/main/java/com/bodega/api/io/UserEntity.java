@@ -2,11 +2,10 @@ package com.bodega.api.io;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
-
-import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -20,7 +19,7 @@ import java.util.UUID;
 @Setter
 @JsonIgnoreProperties(value = {"profiles"})
 @Entity
-@Table(name = "usuario")
+@Table(name = "customers")
 public class UserEntity implements Serializable {
   @Id
   private UUID id;
@@ -44,6 +43,9 @@ public class UserEntity implements Serializable {
   @JsonIgnore
   @Column
   private String password;
+
+  @Column
+  private String role;
 
   @Column(name = "telefono")
   private String telephone;

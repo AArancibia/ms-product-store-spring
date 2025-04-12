@@ -12,6 +12,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -24,10 +25,12 @@ public class UserServiceImpl implements UserService {
   private final UserProfileRepository userProfileRepository;
   private final ProfileService profileService;
   private final ModelMapper mapper;
+  private final PasswordEncoder passwordEncoder;
 
   @Override
   public Mono<UserDto> registerUser(UserDto userDto) {
     var fluxProfiles = profileService.getGeneralProfiles().map(profileDto -> mapper.map(profileDto, ProfileEntity.class));
+    userDto.setPassword(hashPassword(userDto.getPassword()));
     return Mono.just(mapper.map(userDto, UserEntity.class))
       .map(userRepository::save)
       .zipWith(fluxProfiles.collectList(), (userCreated, profiles) -> {
@@ -37,6 +40,10 @@ public class UserServiceImpl implements UserService {
       })
       .map(userEntity -> mapper.map(userEntity, UserDto.class))
       .log();
+  }
+
+  public String hashPassword(String password) {
+    return passwordEncoder.encode(password);
   }
 
   @Override
