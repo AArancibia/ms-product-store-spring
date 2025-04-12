@@ -8,19 +8,20 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 @Slf4j
 @Service
 public class SaleReport {
+    private SaleReport() {}
 
     public static void BuildReport(ReportSaleRequest saleDataReport, HttpServletResponse response) {
         try {
@@ -66,16 +67,14 @@ public class SaleReport {
     }
 
     public static JFreeChart generatePieChart(ReportSaleRequest saleDataReport) {
-        DefaultPieDataset dataSet = new DefaultPieDataset();
+        var dataSet = new DefaultPieDataset();
         for (MonthSaleReport month: saleDataReport.getMonths()) {
             if (month.getVenta() > 0) {
                 String message = month.getMonth() + " - S/. " + month.getVenta();
                 dataSet.setValue(message, month.getVenta());
             }
         }
-        JFreeChart chart = ChartFactory.createPieChart(
+        return ChartFactory.createPieChart(
                 "", dataSet, false, false, false);
-
-        return chart;
     }
 }

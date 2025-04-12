@@ -1,7 +1,7 @@
 package com.bodega.api.ui.controller;
 
-import com.bodega.api.service.ProductService;
 import com.bodega.api.shared.dto.ProductDto;
+import com.bodega.api.service.ProductService;
 import com.bodega.api.ui.model.request.ProductRequest;
 import com.bodega.api.ui.model.response.ProductResponse;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @Slf4j
 @RestController
 @RequestMapping("products")
@@ -29,8 +28,7 @@ public class ProductController {
 
     @PostMapping
     public Mono<ProductResponse> createProduct(@RequestBody() ProductRequest productRequest) {
-        log.info(productRequest.getName());
-        return service.createProduct(productRequest)
-            .map(productDto -> mapper.map(productDto, ProductResponse.class));
+        return service.saveProduct(mapper.map(productRequest, ProductDto.class))
+          .map(productDto -> mapper.map(productDto, ProductResponse.class));
     }
 }

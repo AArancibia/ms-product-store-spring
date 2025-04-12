@@ -1,14 +1,13 @@
 package com.bodega.api.service;
 
 import com.bodega.api.shared.dto.ProductDto;
-import com.bodega.api.ui.model.request.ProductRequest;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
+import java.util.UUID;
 
 public interface ProductService {
+    Mono<ProductDto> getProduct(UUID id);
     Flux<ProductDto> getProducts();
-    // ProductDto createProduct(ProductRequest createProductRequest);
-    Mono<ProductDto> createProduct(ProductRequest createProductRequest);
+    Mono<ProductDto> saveProduct(ProductDto productDto);
 }

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-restapp
+  labels:
+    app: backend-restapp
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-restapp
+  template:
+    metadata:
+      # name: backend-restapp-pod
+      labels:
+        app: backend-restapp
+        tier: backend
+    spec:
+      containers:
+        - name: backend-restapp
+          image: arancibia/bodegastore
+          ports:
+            - containerPort: 8020 # spring boot port

@@ -1,18 +1,22 @@
 package com.bodega.api.io;
 
-import lombok.Data;
-import org.hibernate.annotations.Type;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import jakarta.persistence.*;
+import java.io.Serializable;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name="detalleventa")
-public class SaleDetailEntity {
+@JsonIgnoreProperties({ "sale" })
+public class SaleDetailEntity implements Serializable {
     @Id
-    @Type(type="org.hibernate.type.PostgresUUIDType")
-    private String id;
+    private UUID id;
 
     @Column(name = "precio")
     private int price;
@@ -20,7 +24,6 @@ public class SaleDetailEntity {
     @Column(name = "cantidad")
     private int quantity;
 
-    @Type(type="org.hibernate.type.PostgresUUIDType")
     @Column(name = "venta_id", columnDefinition = "uuid")
     private UUID saleId;
 
@@ -28,7 +31,7 @@ public class SaleDetailEntity {
     @JoinColumn(name = "venta_id", referencedColumnName = "id", insertable = false, updatable = false)
     private SaleEntity sale;
 
-    @Type(type="org.hibernate.type.PostgresUUIDType")
+
     @Column(name = "producto_id", columnDefinition = "uuid")
     private UUID productId;
 
