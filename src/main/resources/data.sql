@@ -8,15 +8,46 @@ create unique index ix_auth_username on authorities (username,authority);
 insert into users (username, password, enabled) values ('user', '{noop}EazyBytes@12345', '1');
 insert into authorities values ('user', 'read');
 
-
 insert into users (username, password, enabled) values ('admin', '{bcrypt}$2a$12$QdftGmBsEOlchyrmoEJoZ.pVmWJQ7W5thL/R/iUzzN5xoydnKWZyu', '1');
 insert into authorities values ('admin', 'admin');
 
+DROP TABLE IF EXISTS categoria cascade ;
+
+CREATE TABLE categoria (
+                           id UUID NOT NULL,
+                           nombre varchar(100) NOT NULL,
+                           PRIMARY KEY (id)
+);
+
+INSERT INTO categoria (id, nombre)
+VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'abarrotes');
+
+DROP TABLE IF EXISTS producto cascade;
+
+CREATE TABLE producto (
+                          id UUID NOT NULL,
+                          nombre varchar(100) NOT NULL,
+                          precio_unitario double precision NOT NULL,
+                          cantidad int NOT NULL,
+                          imagen varchar(150),
+                          categoria_id UUID NULL,
+                          PRIMARY KEY (id)
+);
+
+INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
+VALUES ('694158a1-b534-4102-a7a0-a350d6677f9e', 'Coca Cola Botella de 500ml', 170, 45, 'https://miamarket.pe/assets/uploads/221b9e347e36d61ed6a9ebb525b94f0d.jpg', '5452ae64-59ad-4ccd-bef4-7424293baee5');
+
+INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
+VALUES ('dec2be3c-17d8-4ebb-b0d3-4014ff850bbf', 'Filete de Atún Primor 140g', 160, 20, 'https://vivanda.vtexassets.com/arquivos/ids/360250/20257683.jpg?v=637818684454530000', '5452ae64-59ad-4ccd-bef4-7424293baee5');
+
+INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
+VALUES ('a0cfc7df-4cb4-49a3-922e-384b7ec3d91b', 'Sal Marina EMSAL Mesa Bolsa 1Kg', 260, 25, 'https://plazavea.vteximg.com.br/arquivos/ids/197525-512-512/sal-marina-emsal-cocina-bolsa-1kg.jpg', '5452ae64-59ad-4ccd-bef4-7424293baee5');
+
+INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
+VALUES ('528062d9-0bf7-41b2-92f5-d807b7472f19', 'Aceite Vegetal Primor 900ml', 140, 15, 'https://wongfood.vtexassets.com/arquivos/ids/711219-800-auto?v=638537399338230000&width=800&height=auto&aspect=true', '5452ae64-59ad-4ccd-bef4-7424293baee5');
+
 
 /*
-
-insert into customers (id, username, password, role, nombres, apellido_paterno) values ('d53e6af0-908d-46da-963d-c8eb9825ebb1', 'happy@bodegastore.com', '{noop}EazyBytes@12345', 'read', 'Alexis Joel', 'Arancibia');
-insert into customers (id, username, password, role, nombres, apellido_paterno) values ('953b0b7c-3115-4da0-a7a4-1087258f7134', 'admin@bodegastore.com', '{bcrypt}$2a$12$QdftGmBsEOlchyrmoEJoZ.pVmWJQ7W5thL/R/iUzzN5xoydnKWZyu', 'admin', 'Alexis Joel', 'Arancibia');
 
 DROP TABLE IF EXISTS usuario;
 
@@ -51,73 +82,6 @@ CREATE TABLE accesos (
                            general boolean NOT NULL,
                            PRIMARY KEY (id)
 );
-
-INSERT INTO accesos (id, ruta, icono, descripcion, general)
-VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', '/', 'HomeOutlined', 'Products', true);
-
-INSERT INTO accesos (id, ruta, icono, descripcion, general)
-VALUES ('7aee4a7d-b3b1-40e0-8abf-f5e2ee934deb', '/carrito', 'ShoppingOutlined', 'Carrito de compras', true);
-
-INSERT INTO accesos (id, ruta, icono, descripcion, general)
-VALUES ('a0cfc7df-4cb4-49a3-922e-384b7ec3d91b', '/reporte', 'ShoppingOutlined', 'Sales report', false);
-
-DROP TABLE IF EXISTS usuarios_accesos;
-
-CREATE TABLE usuarios_accesos (
-                           usuario_id varchar(50) NOT NULL,
-                           accesos_id varchar(50) NOT NULL,
-                               PRIMARY KEY (usuario_id, accesos_id)
-);
-
-INSERT INTO usuarios_accesos (usuario_id, accesos_id)
-VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', '5452ae64-59ad-4ccd-bef4-7424293baee5');
-
-INSERT INTO usuarios_accesos (usuario_id, accesos_id)
-VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', '7aee4a7d-b3b1-40e0-8abf-f5e2ee934deb');
-
-INSERT INTO usuarios_accesos (usuario_id, accesos_id)
-VALUES ('ab1d5a10-8389-4f94-b2bf-7261f109a4db', '5452ae64-59ad-4ccd-bef4-7424293baee5');
-
-INSERT INTO usuarios_accesos (usuario_id, accesos_id)
-VALUES ('ab1d5a10-8389-4f94-b2bf-7261f109a4db', '7aee4a7d-b3b1-40e0-8abf-f5e2ee934deb');
-
-INSERT INTO usuarios_accesos (usuario_id, accesos_id)
-VALUES ('ab1d5a10-8389-4f94-b2bf-7261f109a4db', 'a0cfc7df-4cb4-49a3-922e-384b7ec3d91b');
-
-DROP TABLE IF EXISTS categoria;
-
-CREATE TABLE categoria (
-                             id UUID NOT NULL,
-                             nombre varchar(100) NOT NULL,
-                             PRIMARY KEY (id)
-);
-
-INSERT INTO categoria (id, nombre)
-VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'abarrotes');
-
-DROP TABLE IF EXISTS producto;
-
-CREATE TABLE producto (
-  id UUID NOT NULL,
-  nombre varchar(100) NOT NULL,
-  precio_unitario double precision NOT NULL,
-  cantidad int NOT NULL,
-  imagen varchar(150),
-  categoria_id UUID NULL,
-  PRIMARY KEY (id)
-);
-
-INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
-VALUES ('694158a1-b534-4102-a7a0-a350d6677f9e', 'Coca Cola Botella de 500ml', 170, 45, 'https://miamarket.pe/assets/uploads/221b9e347e36d61ed6a9ebb525b94f0d.jpg', '5452ae64-59ad-4ccd-bef4-7424293baee5');
-
-INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
-VALUES ('dec2be3c-17d8-4ebb-b0d3-4014ff850bbf', 'Filete de Atún Primor 140g', 160, 20, 'https://vivanda.vtexassets.com/arquivos/ids/360250/20257683.jpg?v=637818684454530000', '5452ae64-59ad-4ccd-bef4-7424293baee5');
-
-INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
-VALUES ('a0cfc7df-4cb4-49a3-922e-384b7ec3d91b', 'Sal Marina EMSAL Mesa Bolsa 1Kg', 260, 25, 'https://plazavea.vteximg.com.br/arquivos/ids/197525-512-512/sal-marina-emsal-cocina-bolsa-1kg.jpg', '5452ae64-59ad-4ccd-bef4-7424293baee5');
-
-INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
-VALUES ('528062d9-0bf7-41b2-92f5-d807b7472f19', 'Aceite Vegetal Primor 900ml', 140, 15, 'https://wongfood.vtexassets.com/arquivos/ids/711219-800-auto?v=638537399338230000&width=800&height=auto&aspect=true', '5452ae64-59ad-4ccd-bef4-7424293baee5');
 
 DROP TABLE IF EXISTS venta;
 

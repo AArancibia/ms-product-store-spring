@@ -8,6 +8,7 @@ import com.bodega.api.repository.UserRepository;
 import com.bodega.api.service.ProfileService;
 import com.bodega.api.service.UserService;
 import com.bodega.api.shared.dto.UserDto;
+import com.bodega.api.shared.utils.Constants;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +31,11 @@ public class UserServiceImpl implements UserService {
   @Override
   public Mono<UserDto> registerUser(UserDto userDto) {
     var fluxProfiles = profileService.getGeneralProfiles().map(profileDto -> mapper.map(profileDto, ProfileEntity.class));
-    userDto.setPassword(hashPassword(userDto.getPassword()));
+    if (userDto.getIsGoogleAccount()) {
+      userDto.setPassword(Constants.DEFAULT_PWD);
+    } else {
+      userDto.setPassword(hashPassword(userDto.getPassword()));
+    }
     return Mono.just(mapper.map(userDto, UserEntity.class))
       .map(userRepository::save)
       .zipWith(fluxProfiles.collectList(), (userCreated, profiles) -> {

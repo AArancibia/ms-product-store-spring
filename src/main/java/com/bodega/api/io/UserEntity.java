@@ -24,10 +24,10 @@ public class UserEntity implements Serializable {
   @Id
   private UUID id;
 
-  @Column(name = "nombres", nullable = false)
+  @Column(name = "nombres")
   private String givenName;
 
-  @Column(name = "apellido_paterno", nullable = false)
+  @Column(name = "apellido_paterno")
   private String lastName;
 
   @Column(name = "apellido_materno")

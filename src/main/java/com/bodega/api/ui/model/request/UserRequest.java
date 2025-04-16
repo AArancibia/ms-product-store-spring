@@ -1,5 +1,7 @@
 package com.bodega.api.ui.model.request;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,10 +14,12 @@ public class UserRequest {
   private String givenName;
   private String lastName;
   private String surname;
+  @NotNull
+  @NotBlank
   private String email;
   private String password;
   private String telephone;
   private String username;
-  private Boolean isGoogleAccount;
+  private Boolean isGoogleAccount = false;
   private String role;
 }
