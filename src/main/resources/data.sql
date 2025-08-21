@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS usuario;
+DROP TABLE IF EXISTS usuario cascade;
 
 CREATE TABLE usuario (
                              id UUID NOT NULL,
@@ -21,7 +21,7 @@ INSERT INTO usuario
 (id, nombres, apellido_paterno, apellido_materno, email, username, telefono, isGoogleAccount)
 VALUES ('ab1d5a10-8389-4f94-b2bf-7261f109a4db', 'Alexis Joel', 'Arancibia', 'Sanchez', 'aarancibia4251@gmail.com', 'aarancibia4251@gmail.com','994661485', true);
 
-DROP TABLE IF EXISTS accesos;
+DROP TABLE IF EXISTS accesos cascade;
 
 CREATE TABLE accesos (
                            id UUID NOT NULL,
@@ -44,8 +44,8 @@ VALUES ('a0cfc7df-4cb4-49a3-922e-384b7ec3d91b', '/reporte', 'ShoppingOutlined', 
 DROP TABLE IF EXISTS usuarios_accesos;
 
 CREATE TABLE usuarios_accesos (
-                           usuario_id varchar(50) NOT NULL,
-                           accesos_id varchar(50) NOT NULL,
+                           usuario_id UUID NOT NULL,
+                           accesos_id UUID NOT NULL,
                                PRIMARY KEY (usuario_id, accesos_id)
 );
 
@@ -64,7 +64,7 @@ VALUES ('ab1d5a10-8389-4f94-b2bf-7261f109a4db', '7aee4a7d-b3b1-40e0-8abf-f5e2ee9
 INSERT INTO usuarios_accesos (usuario_id, accesos_id)
 VALUES ('ab1d5a10-8389-4f94-b2bf-7261f109a4db', 'a0cfc7df-4cb4-49a3-922e-384b7ec3d91b');
 
-DROP TABLE IF EXISTS categoria;
+DROP TABLE IF EXISTS categoria cascade ;
 
 CREATE TABLE categoria (
                              id UUID NOT NULL,
@@ -75,7 +75,7 @@ CREATE TABLE categoria (
 INSERT INTO categoria (id, nombre)
 VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'abarrotes');
 
-DROP TABLE IF EXISTS producto;
+DROP TABLE IF EXISTS producto cascade ;
 
 CREATE TABLE producto (
   id UUID NOT NULL,
@@ -99,7 +99,7 @@ VALUES ('a0cfc7df-4cb4-49a3-922e-384b7ec3d91b', 'Sal Marina EMSAL Mesa Bolsa 1Kg
 INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
 VALUES ('528062d9-0bf7-41b2-92f5-d807b7472f19', 'Aceite Vegetal Primor 900ml', 140, 15, 'https://wongfood.vtexassets.com/arquivos/ids/711219-800-auto?v=638537399338230000&width=800&height=auto&aspect=true', '5452ae64-59ad-4ccd-bef4-7424293baee5');
 
-DROP TABLE IF EXISTS venta;
+DROP TABLE IF EXISTS venta cascade ;
 
 CREATE TABLE venta (
     id UUID NOT NULL,
