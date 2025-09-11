@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.bodega.api</groupId>
 	<artifactId>bodegastore</artifactId>
-	<version>2.1.0</version>
+	<version>2.1.1</version>
 	<name>BodegaAppApiService</name>
 	<packaging>jar</packaging>
 	<description>Microservice for bodega app</description>
@@ -156,6 +156,12 @@
 				<configuration>
 					<image>
 						<name>arancibia/${project.artifactId}:${project.version}</name>
+						<builder>paketobuildpacks/builder:base</builder>
+						<env>
+							<BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
+							<BP_ARCH>amd64</BP_ARCH>
+							<BP_NATIVE_IMAGE>false</BP_NATIVE_IMAGE>
+						</env>
 					</image>
 					<excludes>
 						<exclude>
