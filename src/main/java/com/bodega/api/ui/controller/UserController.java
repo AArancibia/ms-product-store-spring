@@ -19,9 +19,9 @@ public class UserController {
   private final ModelMapper mapper;
 
 
-  @GetMapping("/{username}")
-  public Mono<UserResponse> registerUser(@PathVariable String username) {
-    return userService.findUserByUsername(username)
+  @GetMapping("/{email}")
+  public Mono<UserResponse> findByEmail(@PathVariable String email) {
+    return userService.findUserByEmail(email)
       .map(userDto -> mapper.map(userDto, UserResponse.class));
   }
 
