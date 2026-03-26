@@ -44,4 +44,10 @@ public class UserServiceImpl implements UserService {
     var userDb = userRepository.findByUsername(username).orElseThrow(() -> new EntityNotFoundException("User not found, username: " + username));
     return Mono.just(mapper.map(userDb, UserDto.class));
   }
+
+  @Override
+  public Mono<UserDto> findUserByEmail(String email) {
+    var userDb = userRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("User not found, email: " + email));
+    return Mono.just(mapper.map(userDb, UserDto.class));
+  }
 }
