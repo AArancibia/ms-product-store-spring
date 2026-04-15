@@ -9,16 +9,18 @@ CREATE TABLE usuario (
                              email varchar(40) unique,
                              password varchar(40),
                              telefono varchar(20),
-                             isGoogleAccount boolean,
+                             is_google_account boolean,
+                             created_date TIMESTAMP,
+                             updated_date TIMESTAMP,
                              PRIMARY KEY (id)
 );
 
 INSERT INTO usuario
-    (id, nombres, apellido_paterno, apellido_materno, email, username, telefono, isGoogleAccount)
+    (id, nombres, apellido_paterno, apellido_materno, email, username, telefono, is_google_account)
 VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'Alexis Joel', 'Arancibia', 'Sanchez', 'alexis2396@hotmail.com', 'aarancis','994661485', false);
 
 INSERT INTO usuario
-(id, nombres, apellido_paterno, apellido_materno, email, username, telefono, isGoogleAccount)
+(id, nombres, apellido_paterno, apellido_materno, email, username, telefono, is_google_account)
 VALUES ('ab1d5a10-8389-4f94-b2bf-7261f109a4db', 'Alexis Joel', 'Arancibia', 'Sanchez', 'aarancibia4251@gmail.com', 'aarancibia4251@gmail.com','994661485', true);
 
 DROP TABLE IF EXISTS accesos cascade;
@@ -36,10 +38,16 @@ INSERT INTO accesos (id, ruta, icono, descripcion, general)
 VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', '/', 'HomeOutlined', 'Products', true);
 
 INSERT INTO accesos (id, ruta, icono, descripcion, general)
-VALUES ('7aee4a7d-b3b1-40e0-8abf-f5e2ee934deb', '/carrito', 'ShoppingOutlined', 'Carrito de compras', true);
+VALUES ('7aee4a7d-b3b1-40e0-8abf-f5e2ee934deb', '/carrito', 'ShoppingOutlined', 'Shop cart', true);
+
+INSERT INTO accesos (id, ruta, icono, descripcion, general)
+VALUES ('594eda31-ee7e-4e94-abfd-d8f7387760f2', '/informacion', 'HistoryOutlined', 'Orders', true);
 
 INSERT INTO accesos (id, ruta, icono, descripcion, general)
 VALUES ('a0cfc7df-4cb4-49a3-922e-384b7ec3d91b', '/reporte', 'ShoppingOutlined', 'Sales report', false);
+
+INSERT INTO accesos (id, ruta, icono, descripcion, general)
+VALUES ('fcb6640c-8de5-4cff-9700-f2b97be4697d', '/productos', 'EditOutlined', 'Inventory', false);
 
 DROP TABLE IF EXISTS usuarios_accesos;
 
@@ -56,6 +64,15 @@ INSERT INTO usuarios_accesos (usuario_id, accesos_id)
 VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', '7aee4a7d-b3b1-40e0-8abf-f5e2ee934deb');
 
 INSERT INTO usuarios_accesos (usuario_id, accesos_id)
+VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'a0cfc7df-4cb4-49a3-922e-384b7ec3d91b');
+
+INSERT INTO usuarios_accesos (usuario_id, accesos_id)
+VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'fcb6640c-8de5-4cff-9700-f2b97be4697d');
+
+INSERT INTO usuarios_accesos (usuario_id, accesos_id)
+VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', '594eda31-ee7e-4e94-abfd-d8f7387760f2');
+
+INSERT INTO usuarios_accesos (usuario_id, accesos_id)
 VALUES ('ab1d5a10-8389-4f94-b2bf-7261f109a4db', '5452ae64-59ad-4ccd-bef4-7424293baee5');
 
 INSERT INTO usuarios_accesos (usuario_id, accesos_id)
@@ -69,11 +86,19 @@ DROP TABLE IF EXISTS categoria cascade ;
 CREATE TABLE categoria (
                              id UUID NOT NULL,
                              nombre varchar(100) NOT NULL,
+                             valor varchar(50) NOT NULL,
+                             descripcion varchar(150) NULL,
                              PRIMARY KEY (id)
 );
 
-INSERT INTO categoria (id, nombre)
-VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'abarrotes');
+INSERT INTO categoria (id, nombre, valor, descripcion)
+VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', 'Groceries', 'groceries', '');
+INSERT INTO categoria (id, nombre, valor, descripcion)
+VALUES ('b67b6ead-5309-4de2-8a78-6022ea55f408', 'Clothing and Accessories', 'clothing', '');
+INSERT INTO categoria (id, nombre, valor, descripcion)
+VALUES ('0896d2fb-29f3-4391-9b5d-5936dfce5d7d', 'Electronics', 'electronics', '');
+INSERT INTO categoria (id, nombre, valor, descripcion)
+VALUES ('cb764a13-4ad9-4802-b139-9d579faca960', 'Cleaning Supplies', 'cleaning', '');
 
 DROP TABLE IF EXISTS producto cascade ;
 
@@ -94,10 +119,10 @@ INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_i
 VALUES ('dec2be3c-17d8-4ebb-b0d3-4014ff850bbf', 'Filete de Atún Primor 140g', 160, 20, 'https://vivanda.vtexassets.com/arquivos/ids/360250/20257683.jpg?v=637818684454530000', '5452ae64-59ad-4ccd-bef4-7424293baee5');
 
 INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
-VALUES ('a0cfc7df-4cb4-49a3-922e-384b7ec3d91b', 'Sal Marina EMSAL Mesa Bolsa 1Kg', 260, 25, 'https://plazavea.vteximg.com.br/arquivos/ids/197525-512-512/sal-marina-emsal-cocina-bolsa-1kg.jpg', '5452ae64-59ad-4ccd-bef4-7424293baee5');
+VALUES ('a0cfc7df-4cb4-49a3-922e-384b7ec3d91b', 'Sal Marina EMSAL Mesa Bolsa 1Kg', 260, 25, 'https://plazavea.vteximg.com.br/arquivos/ids/32481721-450-450/20130447.jpg?v=638954675474000000', '5452ae64-59ad-4ccd-bef4-7424293baee5');
 
 INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_id)
-VALUES ('528062d9-0bf7-41b2-92f5-d807b7472f19', 'Aceite Vegetal Primor 900ml', 140, 15, 'https://wongfood.vtexassets.com/arquivos/ids/711219-800-auto?v=638537399338230000&width=800&height=auto&aspect=true', '5452ae64-59ad-4ccd-bef4-7424293baee5');
+VALUES ('528062d9-0bf7-41b2-92f5-d807b7472f19', 'Aceite Vegetal Primor 900ml', 140, 15, 'https://4msurtidos.com/cdn/shop/products/161.jpg?v=1592782357', '5452ae64-59ad-4ccd-bef4-7424293baee5');
 
 DROP TABLE IF EXISTS venta cascade ;
 
@@ -107,6 +132,7 @@ CREATE TABLE venta (
     precio_venta double precision NOT NULL,
     fecha_venta timestamp NOT NULL,
     usuario_id UUID NOT NULL,
+    paypal_id varchar(50),
     PRIMARY KEY (id)
 );
 

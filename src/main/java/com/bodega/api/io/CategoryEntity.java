@@ -21,6 +21,12 @@ public class CategoryEntity implements Serializable {
     @Column(name = "nombre")
     private String name;
 
+    @Column(name = "valor")
+    private String value;
+
+    @Column(name = "descripcion")
+    private String description;
+
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<ProductEntity> products;
 
