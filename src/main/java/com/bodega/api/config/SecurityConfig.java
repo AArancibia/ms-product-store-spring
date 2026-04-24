@@ -20,6 +20,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(request -> {
                 request.requestMatchers(HttpMethod.GET, "/accesos/general").permitAll();
                 request.requestMatchers(HttpMethod.GET, "/products").permitAll();
+                request.requestMatchers(HttpMethod.GET, "/categories").permitAll();
                 request.requestMatchers(HttpMethod.POST, "/user/register").permitAll();
                 request.anyRequest().authenticated();
             })
