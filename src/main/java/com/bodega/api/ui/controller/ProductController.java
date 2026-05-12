@@ -7,6 +7,8 @@ import com.bodega.api.ui.model.response.ProductResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -23,6 +25,13 @@ public class ProductController {
     @GetMapping
     public Flux<ProductResponse> getProducts() {
         return service.getProducts()
+                .map(productDto -> mapper.map(productDto, ProductResponse.class));
+    }
+
+    @GetMapping("/page/{page}")
+    public Page<ProductResponse> getProducts(@PathVariable Integer page) {
+        PageRequest pageRequest = PageRequest.of(page, 12);
+        return service.getProducts(pageRequest)
                 .map(productDto -> mapper.map(productDto, ProductResponse.class));
     }
 
