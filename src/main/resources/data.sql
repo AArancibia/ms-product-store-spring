@@ -176,13 +176,99 @@ INSERT INTO producto (id, nombre, precio_unitario, cantidad, imagen, categoria_i
 
 ('0948e790-06c5-4386-a660-42ba00e83f0e', 'Classic Blue Suede Casual Shoes', 39, 28, 'https://i.imgur.com/sC0ztOB.jpeg', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
 
-('9d8442b1-7f7c-4b5c-8c54-a1d09301136c', '100% cotton short-sleeved t-shirt #267', 47, 37, 'https://static.massimodutti.net/assets/public/e95e/cfb9/6ba6484493c2/73953ebf15c0/06857803122-o1/06857803122-o1.jpg?ts=1775553794876&w=850&f=auto', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
-
 ('a5508a3d-4ab0-4b6e-98e1-7b3464378825', 'asdasdasdasd', 667, 4, 'https://placehold.co/600x400', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
 
 ('f8bd69fa-155e-496d-a4c8-416d7d77868f', 'New Product', 10, 47, 'https://placehold.co/600x400', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
 
-('33c33bb0-a343-489e-b9cf-36dbf373053c', 'Frying pan for fyring', 200, 10, 'https://api.lorem.space/image/fashion?w=640&h=480&r=4278', 'b67b6ead-5309-4de2-8a78-6022ea55f408');
+('33c33bb0-a343-489e-b9cf-36dbf373053c', 'Frying pan for fyring', 200, 10, 'https://api.lorem.space/image/fashion?w=640&h=480&r=4278', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('8f4c8d94-5f0d-4a9d-a1e4-92d4e87c1001', 'Urban Oversized Hoodie', 89, 18, 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('1b02e7a1-2d4b-47aa-9f71-7f5f94a51002', 'Slim Fit Denim Jacket', 115, 12, 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('72dd6f2f-bcc5-45ff-aec5-80e73d861003', 'Classic Cotton Joggers', 64, 29, 'https://images.unsplash.com/photo-1506629905607-d9f5b6d1f8b1?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('fd3f59d5-cd8a-41d3-b7e2-0b991d3d1004', 'Minimalist White Sneakers', 138, 14, 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('91d7d5a3-6c8d-4f47-84d0-f48e76b41005', 'Vintage Flannel Shirt', 58, 33, 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('5c3e4f92-3b74-4d68-8c7a-cb69e2b61006', 'Essential Black Hoodie', 97, 20, 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('be9e40c8-6b58-47a0-b4e5-8c9e5f351007', 'Athletic Running Shorts', 49, 45, 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('ca6f5a3e-f61d-4f5c-a2ae-019f73fa1008', 'Premium Wool Sweater', 129, 9, 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('f34b4b1d-d98c-4fef-bfe7-1e80a7e71009', 'Streetwear Graphic Tee', 39, 51, 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?fit=crop&w=600&q=80', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('b5bcb4de-c2fd-44df-a73b-03f9e8e21010', 'Leather Chelsea Boots', 174, 7, 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('4c1bdb0e-0db4-45a8-9a4b-00d67f961011', 'Portable Bluetooth Speaker', 76, 24, 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+
+('dc9f2b42-30dd-4a3e-a94b-708b5f2d1012', 'Wireless Mechanical Keyboard', 143, 13, 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+
+('f7b39c0e-0a84-46a0-96c1-9f0f94cf1013', 'Smart Fitness Watch', 159, 11, 'https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+
+('e7d6a7a3-c0f4-4dd2-b6ff-6c7f92b81015', '4K Streaming Webcam', 94, 27, 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+
+('d8fa7b3f-8d61-46f4-a7d9-1dbba74a1016', 'Portable SSD 2TB', 210, 10, 'https://images.unsplash.com/photo-1593642702744-d377ab507dc8?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+
+('67c89b34-0d90-49d1-b7bb-581f38aa1017', 'RGB Gaming Mouse', 69, 34, 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+
+('c0bfa2b6-99de-45cc-bae0-95c42f761018', 'UltraWide Curved Monitor', 329, 6, 'https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+
+('9a3b3db1-6217-4780-a7c9-7e1fdd871019', 'USB-C Charging Hub', 47, 39, 'https://images.unsplash.com/photo-1580894908361-967195033215?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+
+('52dd4f86-06b1-4f7c-b3c0-1ffde9311020', 'Wireless Earbuds Pro', 122, 21, 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+
+('22222222-bbbb-4bbb-8bbb-222222222222', 'Classic Blue Denim Jacket', 120, 9, 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('33333333-cccc-4ccc-8ccc-333333333333', 'Minimal White Sneakers', 135, 11, 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('44444444-dddd-4ddd-8ddd-444444444444', 'Oversized Black Tee', 42, 31, 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('55555555-eeee-4eee-8eee-555555555555', 'Vintage Leather Boots', 180, 5, 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('66666666-ffff-4fff-8fff-666666666666', 'Athletic Running Shorts', 55, 26, 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('88888888-bcbc-4bcb-8bcb-888888888888', 'Modern Slim Jeans', 88, 19, 'https://images.unsplash.com/photo-1506629905607-d9f5b6d1f8b1?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('99999999-cdcd-4cdc-8cdc-999999999999', 'Streetwear Cargo Pants', 110, 8, 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('aaaaaaaa-dede-4ded-8ded-aaaaaaaaaaaa', 'Classic White Polo', 48, 29, 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('bbbbbbbb-efef-4efe-8efe-bbbbbbbbbbbb', 'Wireless Bluetooth Speaker', 74, 17, 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('cccccccc-f0f0-4f0f-8f0f-cccccccccccc', 'Mechanical RGB Keyboard', 140, 7, 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('dddddddd-a1a1-4a1a-8a1a-dddddddddddd', 'Gaming Wireless Mouse', 69, 24, 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('eeeeeeee-b2b2-4b2b-8b2b-eeeeeeeeeeee', 'Smart Fitness Watch X', 160, 10, 'https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('ffffffff-c3c3-4c3c-8c3c-ffffffffffff', 'Noise Cancelling Headphones', 190, 12, 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('12121212-d4d4-4d4d-8d4d-121212121212', 'UltraWide Gaming Monitor', 320, 4, 'https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('23232323-e5e5-4e5e-8e5e-232323232323', 'USB-C Charging Station', 59, 30, 'https://images.unsplash.com/photo-1580894908361-967195033215?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('34343434-f6f6-4f6f-8f6f-343434343434', 'Portable SSD 1TB', 175, 9, 'https://images.unsplash.com/photo-1593642702744-d377ab507dc8?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('45454545-a7a7-4a7a-8a7a-454545454545', '4K Webcam Pro', 99, 21, 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('56565656-b8b8-4b8b-8b8b-565656565656', 'Wireless Earbuds Max', 119, 16, 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+
+('67676767-c9c9-4c9c-8c9c-676767676767', 'Elegant Office Chair', 210, 6, 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('78787878-dada-4ada-8ada-787878787878', 'Minimal Desk Lamp', 38, 34, 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('89898989-ebeb-4beb-8beb-898989898989', 'Portable Power Bank', 52, 25, 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('90909090-fcfc-4cfc-8cfc-909090909090', 'Smart Home Camera', 132, 14, 'https://images.unsplash.com/photo-1558002038-1055907df827?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('10101010-adad-4dad-8dad-101010101010', 'Wireless Charging Pad', 34, 40, 'https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+
+('20202020-bebe-4ebe-8ebe-202020202020', 'Modern Black Backpack', 78, 22, 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('30303030-cfcf-4fcf-8fcf-303030303030', 'Relaxed Fit Hoodie', 92, 17, 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('40404040-d0d0-40d0-80d0-404040404040', 'Premium Sports Sneakers', 144, 8, 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('50505050-e1e1-41e1-81e1-505050505050', 'Classic Brown Jacket', 132, 11, 'https://images.unsplash.com/photo-1514996937319-344454492b37?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('60606060-f2f2-42f2-82f2-606060606060', 'Casual Summer Hat', 29, 44, 'https://images.unsplash.com/photo-1521369909029-2afed882baee?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('70707070-a3a3-43a3-83a3-707070707070', 'Professional Laptop Stand', 67, 19, 'https://images.unsplash.com/photo-1517336714739-489689fd1ca8?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('80808080-b4b4-44b4-84b4-808080808080', 'Studio Condenser Microphone', 118, 7, 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('91919191-c5c5-45c5-85c5-919191919191', 'RGB Gaming Chair', 289, 3, 'https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('12131415-d6d6-46d6-86d6-121314151617', 'Mini Smart Projector', 248, 5, 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('18171615-e7e7-47e7-87e7-181716151413', 'DualSense Wireless Controller', 84, 18, 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+
+('21212121-f8f8-48f8-88f8-212121212121', 'Classic Leather Wallet', 41, 28, 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('31313131-a9a9-49a9-89a9-313131313131', 'Elegant Silk Tie', 36, 35, 'https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('41414141-baba-4aba-8aba-414141414141', 'Modern Travel Bag', 125, 10, 'https://images.unsplash.com/photo-1547949003-9792a18a2601?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('51515151-cbcb-4bcb-8bcb-515151515151', 'Retro Sunglasses', 58, 20, 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+('61616161-dcdc-4cdc-8cdc-616161616161', 'Winter Knit Scarf', 33, 47, 'https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=250&h=250&fit=crop', 'b67b6ead-5309-4de2-8a78-6022ea55f408'),
+
+('71717171-eded-4ded-8ded-717171717171', 'Smart LED Light Strip', 45, 23, 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('81818181-fefe-4efe-8efe-818181818181', 'Wireless Router AX6000', 178, 8, 'https://images.unsplash.com/photo-1647427060118-4911c9821b82?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('91929292-afaf-4faf-8faf-919292929292', 'Portable Tripod Stand', 39, 31, 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('02020202-bfbf-4fbf-8fbf-020202020202', 'Action Camera 4K', 214, 6, 'https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d'),
+('03030303-c0c0-40c0-80c0-030303030303', 'Professional Drone Kit', 499, 2, 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=250&h=250&fit=crop', '0896d2fb-29f3-4391-9b5d-5936dfce5d7d');
 
 DROP TABLE IF EXISTS venta cascade ;
 

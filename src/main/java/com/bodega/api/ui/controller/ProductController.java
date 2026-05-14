@@ -29,8 +29,8 @@ public class ProductController {
     }
 
     @GetMapping("/page/{page}")
-    public Page<ProductResponse> getProducts(@PathVariable Integer page) {
-        PageRequest pageRequest = PageRequest.of(page, 12);
+    public Page<ProductResponse> getProducts(@PathVariable Integer page, @RequestParam("size") int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
         return service.getProducts(pageRequest)
                 .map(productDto -> mapper.map(productDto, ProductResponse.class));
     }
