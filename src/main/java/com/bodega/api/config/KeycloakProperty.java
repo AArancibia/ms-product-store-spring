@@ -1,11 +1,11 @@
 package com.bodega.api.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import lombok.Getter;
 
-@Configuration
+@Component
 @Getter
 public class KeycloakProperty {
     @Value("${keycloak.baseUrl}")
