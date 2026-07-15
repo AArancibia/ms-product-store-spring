@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+@Deprecated(since = "3.5.2", forRemoval = true)
 @Getter
 @Setter
 @JsonIgnoreProperties(value = {"profiles"})

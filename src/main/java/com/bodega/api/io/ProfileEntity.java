@@ -17,6 +17,9 @@ import java.util.UUID;
 public class ProfileEntity implements Serializable {
   @Id
   private UUID id;
+  
+  @Column(name = "nombre", nullable = true)
+  private String name;
 
   @Column(name = "ruta", nullable = false)
   private String url;
@@ -24,12 +27,14 @@ public class ProfileEntity implements Serializable {
   @Column(name = "icono", nullable = false)
   private String icon;
 
-  @Column(name = "descripcion", nullable = false)
+  @Deprecated(since = "3.5.2", forRemoval = true)
+  @Column(name = "descripcion", nullable = true)
   private String description;
 
   @Column(name = "general", nullable = false)
   private Boolean general;
 
+  @Deprecated(since = "3.5.2", forRemoval = true)
   @OneToMany(mappedBy = "profile")
   private Set<UserProfileEntity> profiles;
 }

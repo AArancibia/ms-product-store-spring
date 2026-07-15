@@ -1,0 +1,9 @@
+ALTER TABLE 
+	accesos
+ADD COLUMN
+	nombre VARCHAR(50) NULL;
+
+ALTER TABLE 
+	accesos
+ALTER COLUMN
+	descripcion DROP NOT NULL;

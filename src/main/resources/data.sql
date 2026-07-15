@@ -23,6 +23,10 @@ INSERT INTO usuario
 (id, nombres, apellido_paterno, apellido_materno, email, username, telefono, is_google_account)
 VALUES ('ab1d5a10-8389-4f94-b2bf-7261f109a4db', 'Alexis Joel', 'Arancibia', 'Sanchez', 'aarancibia4251@gmail.com', 'aarancibia4251@gmail.com','994661485', true);
 
+INSERT INTO usuario
+(id, nombres, apellido_paterno, apellido_materno, email, username, telefono, is_google_account)
+VALUES ('9c07c8a3-e173-4a18-85be-7a06589424fa', 'User', 'admin', '', 'useradmin@example.com', 'useradmin','', true);
+
 DROP TABLE IF EXISTS accesos cascade;
 
 CREATE TABLE accesos (
@@ -50,7 +54,7 @@ INSERT INTO accesos (id, ruta, icono, descripcion, general)
 VALUES ('fcb6640c-8de5-4cff-9700-f2b97be4697d', '/productos', 'EditOutlined', 'Inventory', false);
 
 INSERT INTO accesos (id, ruta, icono, descripcion, general)
-VALUES ('8c7e6559-8b16-402d-8199-ab733c10cb3f', '/users', 'UserOutlined', 'Users', true);
+VALUES ('8c7e6559-8b16-402d-8199-ab733c10cb3f', '/users', 'UserOutlined', 'Users', false);
 
 DROP TABLE IF EXISTS usuarios_accesos;
 
@@ -86,6 +90,24 @@ VALUES ('ab1d5a10-8389-4f94-b2bf-7261f109a4db', 'a0cfc7df-4cb4-49a3-922e-384b7ec
 
 INSERT INTO usuarios_accesos (usuario_id, accesos_id)
 VALUES ('5452ae64-59ad-4ccd-bef4-7424293baee5', '8c7e6559-8b16-402d-8199-ab733c10cb3f');
+
+INSERT INTO usuarios_accesos (usuario_id, accesos_id)
+VALUES ('9c07c8a3-e173-4a18-85be-7a06589424fa', '5452ae64-59ad-4ccd-bef4-7424293baee5');
+
+INSERT INTO usuarios_accesos (usuario_id, accesos_id)
+VALUES ('9c07c8a3-e173-4a18-85be-7a06589424fa', '7aee4a7d-b3b1-40e0-8abf-f5e2ee934deb');
+
+INSERT INTO usuarios_accesos (usuario_id, accesos_id)
+VALUES ('9c07c8a3-e173-4a18-85be-7a06589424fa', '594eda31-ee7e-4e94-abfd-d8f7387760f2');
+
+INSERT INTO usuarios_accesos (usuario_id, accesos_id)
+VALUES ('9c07c8a3-e173-4a18-85be-7a06589424fa', '8c7e6559-8b16-402d-8199-ab733c10cb3f');
+
+INSERT INTO usuarios_accesos (usuario_id, accesos_id)
+VALUES ('9c07c8a3-e173-4a18-85be-7a06589424fa', 'a0cfc7df-4cb4-49a3-922e-384b7ec3d91b');
+
+INSERT INTO usuarios_accesos (usuario_id, accesos_id)
+VALUES ('9c07c8a3-e173-4a18-85be-7a06589424fa', 'fcb6640c-8de5-4cff-9700-f2b97be4697d');
 
 DROP TABLE IF EXISTS categoria cascade ;
 
