@@ -22,12 +22,6 @@ public class ProfileController {
   private final ModelMapper mapper;
   private final ProfileService profileService;
 
-  @GetMapping("/general")
-  Flux<ProfileResponse> getGeneralProfiles() {
-    return profileService.getGeneralProfiles()
-      .map(profile -> mapper.map(profile, ProfileResponse.class));
-  }
-
   @PreAuthorize("#id.toString() == #jwt.subject or hasRole('ADMINISTRATOR')")
   @GetMapping
   public Flux<ProfileResponse> getProfiles(

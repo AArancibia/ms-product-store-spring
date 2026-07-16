@@ -28,7 +28,7 @@ public class ProfileServiceImpl implements ProfileService {
 
   @Override
   public Flux<ProfileDto> getGeneralProfiles() {
-    return Flux.fromIterable(profileRepository.findAllByGeneralIsTrue())
+    return Flux.fromIterable(profileRepository.findAllByGeneralIsTrueAndLegacyIsTrue())
       .map(profile -> mapper.map(profile, ProfileDto.class));
   }
 

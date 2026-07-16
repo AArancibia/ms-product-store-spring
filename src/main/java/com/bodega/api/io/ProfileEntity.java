@@ -33,6 +33,10 @@ public class ProfileEntity implements Serializable {
 
   @Column(name = "general", nullable = false)
   private Boolean general;
+  
+  @Deprecated(since = "3.5.2", forRemoval = true)
+  @Column(name = "legado")
+  private Boolean legacy;
 
   @Deprecated(since = "3.5.2", forRemoval = true)
   @OneToMany(mappedBy = "profile")
