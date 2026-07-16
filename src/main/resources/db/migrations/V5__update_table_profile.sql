@@ -1,0 +1,14 @@
+ALTER TABLE 
+	accesos
+ADD COLUMN
+	nombre VARCHAR(50) NULL;
+	
+ALTER TABLE 
+	accesos
+ADD COLUMN
+	legado BOOLEAN NULL DEFAULT FALSE;
+
+ALTER TABLE 
+	accesos
+ALTER COLUMN
+	descripcion DROP NOT NULL;

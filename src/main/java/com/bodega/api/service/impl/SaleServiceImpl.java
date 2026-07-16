@@ -191,8 +191,8 @@ public class SaleServiceImpl implements SaleService {
         var total = currentSales
           .stream()
           .map(SaleEntity::getSalePrice)
-          .reduce(Integer::sum)
-          .orElse(0);
+          .reduce(Double::sum)
+          .orElse(0D);
         monthSale.setVenta(total);
         return monthSale;
       })

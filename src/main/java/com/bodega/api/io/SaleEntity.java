@@ -21,7 +21,7 @@ public class SaleEntity implements Serializable {
     private String code;
 
     @Column(name = "precio_venta")
-    private int salePrice;
+    private double salePrice;
 
     @Column(name = "fecha_venta")
     private LocalDateTime dateRegister;

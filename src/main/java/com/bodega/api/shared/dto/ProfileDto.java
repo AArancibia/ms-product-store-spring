@@ -13,8 +13,10 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ProfileDto {
   private UUID id;
+  private String name;
+  private String description;
   private String url;
   private String icon;
-  private String description;
   private Boolean general;
+  private Boolean legacy;
 }
