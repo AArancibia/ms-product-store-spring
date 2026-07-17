@@ -7,6 +7,8 @@ import com.bodega.api.shared.dto.ProductDto;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -37,6 +39,13 @@ public class ProductServiceImpl implements ProductService {
         return Flux.fromIterable(repository.findAll())
                 .map(productEntity -> mapper.map(productEntity, ProductDto.class))
                 .log();
+    }
+
+    @Override
+    public Page<ProductDto> getProducts(Pageable pageable) {
+      var products = repository.findAll(pageable);
+      return products
+                .map(productEntity -> mapper.map(productEntity, ProductDto.class));
     }
 
     @Override

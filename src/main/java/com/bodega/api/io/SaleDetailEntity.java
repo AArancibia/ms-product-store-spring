@@ -19,7 +19,7 @@ public class SaleDetailEntity implements Serializable {
     private UUID id;
 
     @Column(name = "precio")
-    private int price;
+    private double price;
 
     @Column(name = "cantidad")
     private int quantity;

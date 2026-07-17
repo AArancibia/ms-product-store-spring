@@ -9,8 +9,9 @@ import java.util.UUID;
 @Setter
 public class ProfileResponse {
   private UUID id;
+  private String name;
+  private String description;
   private String url;
   private String icon;
-  private String description;
   private Boolean general;
 }

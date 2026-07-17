@@ -1,17 +1,20 @@
 package com.bodega.api.config;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import java.util.Collections;
 
-@Configuration
-public class CorsConfig implements WebMvcConfigurer {
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 
+import jakarta.servlet.http.HttpServletRequest;
+
+public class CorsConfig implements CorsConfigurationSource {
   @Override
-  public void addCorsMappings(CorsRegistry registry) {
-    registry.addMapping("/**")
-      .allowedOrigins("*")
-      .allowedMethods("GET", "POST", "PUT", "DELETE")
-      .allowedHeaders("*");
+  public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOrigins(Collections.singletonList("*"));
+    configuration.setAllowedHeaders(Collections.singletonList("*"));
+    configuration.setAllowedMethods(Collections.singletonList("*"));
+    configuration.setMaxAge(3600L);
+    return configuration;
   }
 }

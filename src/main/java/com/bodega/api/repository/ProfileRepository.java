@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface ProfileRepository extends JpaRepository<ProfileEntity, UUID> {
-  List<ProfileEntity> findAllByGeneralIsTrue();
+  List<ProfileEntity> findAllByGeneralIsTrueAndLegacyIsTrue();
 }

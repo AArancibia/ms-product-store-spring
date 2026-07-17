@@ -15,6 +15,6 @@ public class ReportSaleResponse {
   @Setter
   public static class ReportMonthSales {
     String month;
-    int venta;
+    double venta;
   }
 }

@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
+@Deprecated(since = "3.5.2", forRemoval = true)
 @Getter
 @Setter
 @Entity
