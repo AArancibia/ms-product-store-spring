@@ -8,5 +8,4 @@ import java.util.UUID;
 
 public interface ProfileService {
   Flux<ProfileDto> getGeneralProfiles();
-  Flux<ProfileDto> getUserProfiles(UUID userId);
 }

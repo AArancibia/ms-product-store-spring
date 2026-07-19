@@ -41,7 +41,7 @@ public class UserController {
     .map(users -> ResponseEntity.ok().body(users));
   }
 
-  @PreAuthorize("hasRole('ADMINISTRATOR')")
+  @PreAuthorize("hasRole('SUPER_ADMIN') || hasRole('ADMINISTRATOR')")
   @DeleteMapping("{id}/delete")
   public Mono<ResponseEntity<Void>> deleteUser(
     @PathVariable("id") UUID id
@@ -52,7 +52,7 @@ public class UserController {
   @PostMapping("/register")
   public Mono<UserResponse> registerUser(@RequestBody UserRequest user) {
     return userService.registerUser(mapper.map(user, UserDto.class))
-      .map(userDto -> mapper.map(userDto, UserResponse.class));
+    		.map(userDto -> mapper.map(userDto, UserResponse.class));
   }
 
 }

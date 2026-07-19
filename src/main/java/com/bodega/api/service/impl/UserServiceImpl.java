@@ -1,6 +1,7 @@
 package com.bodega.api.service.impl;
 
 import com.bodega.api.config.KeycloakProperty;
+import com.bodega.api.exception.ForbiddenException;
 import com.bodega.api.io.ProfileEntity;
 import com.bodega.api.io.UserEntity;
 import com.bodega.api.io.UserProfileEntity;
@@ -10,6 +11,7 @@ import com.bodega.api.service.ProfileService;
 import com.bodega.api.service.UserService;
 import com.bodega.api.shared.dto.UserDto;
 import com.bodega.api.shared.dto.UserKeycloak;
+import com.bodega.api.shared.utils.Constants;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,8 @@ import java.util.UUID;
 import java.util.function.Predicate;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -41,7 +45,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public Flux<UserKeycloak> findUsers() {
     String url = "/admin/realms/"+ keycloakProperty.getRealm() + "/users";
-    Predicate<UserKeycloak> predicate = user -> user.getUsername().contains("admin");
+    Predicate<UserKeycloak> predicate = user -> user.getEmail().contains("admin@do.not.edit");
   
     return webClientKeycloak
     .get()
@@ -85,6 +89,12 @@ public class UserServiceImpl implements UserService {
     .delete()
     .uri(url)
     .retrieve()
+    .onStatus(HttpStatusCode::is4xxClientError,  clientResponse -> {
+    	if (clientResponse.statusCode().equals(HttpStatus.FORBIDDEN)) {
+    		throw new ForbiddenException(Constants.HTTP_FORBIDDEN_MESSAGE);
+    	}
+    	return Mono.error(new RuntimeException(Constants.HTTP_DEFAULT_MESSAGE));
+    })
     .toBodilessEntity();
   }
 
