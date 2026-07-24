@@ -25,6 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import reactor.core.publisher.Flux;
@@ -42,6 +43,7 @@ public class UserServiceImpl implements UserService {
   private final WebClient webClientKeycloak;
   private final KeycloakProperty keycloakProperty;
 
+  @Transactional(readOnly = true)
   @Override
   public Flux<UserKeycloak> findUsers() {
     String url = "/admin/realms/"+ keycloakProperty.getRealm() + "/users";
@@ -70,12 +72,14 @@ public class UserServiceImpl implements UserService {
       .log();
   }
 
+  @Transactional(readOnly = true)
   @Override
   public Mono<UserDto> findUserByUsername(String username) {
     var userDb = userRepository.findByUsername(username).orElseThrow(() -> new EntityNotFoundException("User not found, username: " + username));
     return Mono.just(mapper.map(userDb, UserDto.class));
   }
 
+  @Transactional(readOnly = true)
   @Override
   public Mono<UserDto> findUserByEmail(String email) {
     var userDb = userRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("User not found, email: " + email));

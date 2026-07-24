@@ -1,0 +1,17 @@
+ALTER TABLE
+	producto
+ALTER COLUMN
+	precio_unitario TYPE NUMERIC(15, 2),
+ALTER COLUMN precio_unitario SET NOT NULL;
+	
+ALTER TABLE
+	venta
+ALTER COLUMN
+	precio_venta TYPE NUMERIC(15, 2),
+ALTER COLUMN precio_venta SET NOT NULL;
+	
+ALTER TABLE
+	detalleventa
+ALTER COLUMN
+	precio TYPE NUMERIC(15, 2),
+ALTER COLUMN precio SET NOT NULL;

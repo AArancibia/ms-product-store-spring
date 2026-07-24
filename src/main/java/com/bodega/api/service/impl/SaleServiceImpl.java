@@ -116,6 +116,7 @@ public class SaleServiceImpl implements SaleService {
       });
   }
 
+  @Transactional(readOnly = true)
   @Override
   public Flux<SaleDto> getSalesByUser(UUID userId) {
     var sales = repository.findAllByUserId(userId);
@@ -145,6 +146,7 @@ public class SaleServiceImpl implements SaleService {
     SaleReport.BuildReport(saleDataReport, response);
   }
 
+  @Transactional(readOnly = true)
   @Override
   public List<ReportSaleResponse> generateReportSales() {
     var sales = repository.findAll();
@@ -191,6 +193,7 @@ public class SaleServiceImpl implements SaleService {
         var total = currentSales
           .stream()
           .map(SaleEntity::getSalePrice)
+          .map(salePrice -> salePrice.doubleValue())
           .reduce(Double::sum)
           .orElse(0D);
         monthSale.setVenta(total);

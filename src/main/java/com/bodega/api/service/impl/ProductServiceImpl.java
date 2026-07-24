@@ -4,27 +4,30 @@ import com.bodega.api.io.ProductEntity;
 import com.bodega.api.repository.ProductRepository;
 import com.bodega.api.service.ProductService;
 import com.bodega.api.shared.dto.ProductDto;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    ModelMapper mapper;
+    private final ModelMapper mapper;
 
-    @Autowired
-    ProductRepository repository;
+    private final ProductRepository repository;
 
+    @Transactional(readOnly = true)
   @Override
   public Mono<ProductDto> getProduct(UUID id) {
     var product = repository.findById(id);
@@ -34,6 +37,7 @@ public class ProductServiceImpl implements ProductService {
     return Mono.just(mapper.map(product.get(), ProductDto.class));
   }
 
+    @Transactional(readOnly = true)
   @Override
     public Flux<ProductDto> getProducts() {
         return Flux.fromIterable(repository.findAll())
@@ -41,6 +45,7 @@ public class ProductServiceImpl implements ProductService {
                 .log();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Page<ProductDto> getProducts(Pageable pageable) {
       var products = repository.findAll(pageable);

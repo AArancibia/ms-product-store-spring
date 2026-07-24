@@ -2,23 +2,33 @@ package com.bodega.api.ui.controller;
 
 import com.bodega.api.service.CategoryService;
 import com.bodega.api.ui.model.response.CategoryResponse;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@Tag(name = "Role", description = "Endpoint methods for role feature")
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
-  @Autowired
-  private ModelMapper mapper;
-  @Autowired
-  private CategoryService service;
 
+  private final ModelMapper mapper;
+  
+  private final CategoryService service;
+
+  @Operation(summary = "List of product categories")
+  @ApiResponses(value = {
+  		@ApiResponse(responseCode = "200", description = "Get all categories"),
+  })
   @GetMapping
   public Flux<CategoryResponse> getCategories() {
     return service.getCategories()

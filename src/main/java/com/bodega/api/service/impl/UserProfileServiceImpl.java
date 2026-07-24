@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import reactor.core.publisher.Flux;
 
 import java.util.UUID;
@@ -18,6 +20,7 @@ public class UserProfileServiceImpl implements UserProfileService {
   private final UserProfileRepository userProfileRepository;
   private final ModelMapper mapper;
 
+  @Transactional(readOnly = true)
   @Override
   public Flux<UserProfileDto> findByUserId(UUID userId) {
     return Flux.fromIterable(userProfileRepository.findAllByUserId(userId))

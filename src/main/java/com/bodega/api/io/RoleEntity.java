@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,10 +32,11 @@ public class RoleEntity implements Serializable {
 	@Column()
 	private String description;
 	
-	@CreatedDate
+	@CreationTimestamp
 	private LocalDateTime createdDate;
 	
-	@LastModifiedBy
+	@UpdateTimestamp
+	@Column(updatable = false)
 	private LocalDateTime updatedDate;
 	
 	@OneToMany(mappedBy = "role")

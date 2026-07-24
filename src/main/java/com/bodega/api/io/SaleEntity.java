@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -20,8 +21,8 @@ public class SaleEntity implements Serializable {
     @Column(name = "code")
     private String code;
 
-    @Column(name = "precio_venta")
-    private double salePrice;
+    @Column(name = "precio_venta", precision = 15, scale = 2)
+    private BigDecimal salePrice;
 
     @Column(name = "fecha_venta")
     private LocalDateTime dateRegister;

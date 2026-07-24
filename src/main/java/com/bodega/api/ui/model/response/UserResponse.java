@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Response for User")
 @Getter
 @Setter
 public class UserResponse {

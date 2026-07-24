@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static com.bodega.api.shared.utils.Constants.SWAGGER_WHITELIST;;
+
 @Configuration
 public class SecurityConfig {
     
@@ -16,8 +18,9 @@ public class SecurityConfig {
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new KeyCloakRoleConverter());
         http
             .cors(cors -> cors.configurationSource(new CorsConfig()))
-            .csrf(csrf -> csrf.disable())
+            .csrf(csrf -> csrf.disable())      
             .authorizeHttpRequests(request -> {
+            	request.requestMatchers(HttpMethod.GET, SWAGGER_WHITELIST).permitAll();
                 request.requestMatchers(HttpMethod.GET, "/role/accesos/general").permitAll();
                 request.requestMatchers(HttpMethod.GET, "/products/**").permitAll();
                 request.requestMatchers(HttpMethod.GET, "/categories").permitAll();

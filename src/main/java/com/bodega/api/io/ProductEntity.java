@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,15 +20,14 @@ public class ProductEntity implements Serializable {
     @Column(name = "nombre")
     private String name;
 
-    @Column(name = "precio_unitario")
-    private double unitPrice;
+    @Column(name = "precio_unitario", precision = 15, scale = 2, nullable = false)
+    private BigDecimal unitPrice;
 
     @Column(name = "cantidad")
     private int quantity;
 
     @Column(name = "imagen")
     private String image;
-
 
     @Column(name = "categoria_id", columnDefinition = "uuid")
     private UUID categoryId;

@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Getter
@@ -18,8 +19,8 @@ public class SaleDetailEntity implements Serializable {
     @Id
     private UUID id;
 
-    @Column(name = "precio")
-    private double price;
+    @Column(name = "precio", precision = 15, scale = 2)
+    private BigDecimal price;
 
     @Column(name = "cantidad")
     private int quantity;
