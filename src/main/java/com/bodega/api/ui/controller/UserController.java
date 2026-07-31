@@ -48,7 +48,7 @@ public class UserController {
       .map(userDto -> mapper.map(userDto, UserResponse.class));
   }
 
-  @Operation(summary = "List of users registered in Keycloak")
+    @Operation(summary = "List of users registered in Keycloak")
   @ApiResponses(value = {
   		@ApiResponse(responseCode = "200", description = "Get all users from keycloak"),
   		@ApiResponse(responseCode = "400", description = "No users found"),

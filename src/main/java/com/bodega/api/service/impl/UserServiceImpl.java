@@ -2,12 +2,8 @@ package com.bodega.api.service.impl;
 
 import com.bodega.api.config.KeycloakProperty;
 import com.bodega.api.exception.ForbiddenException;
-import com.bodega.api.io.ProfileEntity;
 import com.bodega.api.io.UserEntity;
-import com.bodega.api.io.UserProfileEntity;
-import com.bodega.api.repository.UserProfileRepository;
 import com.bodega.api.repository.UserRepository;
-import com.bodega.api.service.ProfileService;
 import com.bodega.api.service.UserService;
 import com.bodega.api.shared.dto.UserDto;
 import com.bodega.api.shared.dto.UserKeycloak;
@@ -37,8 +33,6 @@ import reactor.core.publisher.Mono;
 @Service
 public class UserServiceImpl implements UserService {
   private final UserRepository userRepository;
-  private final UserProfileRepository userProfileRepository;
-  private final ProfileService profileService;
   private final ModelMapper mapper;
   private final WebClient webClientKeycloak;
   private final KeycloakProperty keycloakProperty;
@@ -60,14 +54,8 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public Mono<UserDto> registerUser(UserDto userDto) {
-    var fluxProfiles = profileService.getGeneralProfiles().map(profileDto -> mapper.map(profileDto, ProfileEntity.class));
     return Mono.just(mapper.map(userDto, UserEntity.class))
       .map(userRepository::save)
-      .zipWith(fluxProfiles.collectList(), (userCreated, profiles) -> {
-        var userProfiles  = profiles.stream().map(profileEntity -> new UserProfileEntity(userCreated.getId(), profileEntity.getId())).toList();
-        userProfileRepository.saveAll(userProfiles);
-        return userCreated;
-      })
       .map(userEntity -> mapper.map(userEntity, UserDto.class))
       .log();
   }
