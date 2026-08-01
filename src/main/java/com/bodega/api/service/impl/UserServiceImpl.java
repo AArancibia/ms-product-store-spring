@@ -5,6 +5,7 @@ import com.bodega.api.exception.ForbiddenException;
 import com.bodega.api.io.UserEntity;
 import com.bodega.api.repository.UserRepository;
 import com.bodega.api.service.UserService;
+import com.bodega.api.shared.dto.RealMappingDto;
 import com.bodega.api.shared.dto.UserDto;
 import com.bodega.api.shared.dto.UserKeycloak;
 import com.bodega.api.shared.utils.Constants;
@@ -13,13 +14,18 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.function.Predicate;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -39,18 +45,77 @@ public class UserServiceImpl implements UserService {
 
   @Transactional(readOnly = true)
   @Override
-  public Flux<UserKeycloak> findUsers() {
+  public Flux<UserDto> findUsers() {
     String url = "/admin/realms/"+ keycloakProperty.getRealm() + "/users";
     Predicate<UserKeycloak> predicate = user -> user.getEmail().contains("admin@do.not.edit");
-  
+
+    JwtAuthenticationToken authentication = (JwtAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+    var token = authentication.getToken().getTokenValue();
     return webClientKeycloak
     .get()
     .uri(url)
     .retrieve()
     .bodyToFlux(UserKeycloak.class)
     .filter(predicate.negate())
+    .collectList()
+    .flatMapMany(users -> {
+      var sessionsFlux = users.stream().map(user -> this.getUserSessions(user.getId(), token)).toList();
+      // var rolesFlux = users.stream().map(user -> this.getUserRoles(user.getId(), token)).toList();
+      return Flux.zip(sessionsFlux, objects -> {
+
+        List<UserDto> usersResponse = new ArrayList<>(List.of());
+
+        for (int i = 0; i < objects.length; i++) {
+          var userId = users.get(i);
+          List<UserDto.UserSessionDto> sessions = (List<UserDto.UserSessionDto>) objects[i];
+          usersResponse.add(UserDto.builder()
+            .id(UUID.fromString(userId.getId()))
+            .firstName(userId.getFirstName())
+            .lastName(userId.getLastName())
+            .email(userId.getEmail())
+            .emailVerified(userId.getEmailVerified())
+            .enabled(userId.getEnabled())
+            .username(userId.getUsername())
+            .sessions(sessions)
+            .build());
+        }
+
+        return usersResponse;
+      })
+      .flatMap(Flux::fromIterable);
+    })
     .log();
   }
+
+  public Mono<List<UserDto.UserSessionDto>> getUserSessions(String userId, String token) {
+    String urlSessions = "/admin/realms/"+ keycloakProperty.getRealm() + "/users/" + userId + "/sessions";
+    return webClientKeycloak
+    .get()
+    .uri(urlSessions)
+    .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+    .retrieve()
+    .bodyToFlux(UserDto.UserSessionDto.class)
+    .collectList()
+    .log();
+  }
+
+  public Flux<String> getUserRoles(String userId, String token) {
+    String urlRoles = "/admin/realms/"+ keycloakProperty.getRealm() + "/users/" + userId + "/role-mappings";
+    return webClientKeycloak
+    .get()
+    .uri(urlRoles)
+    .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+    .retrieve()
+    .bodyToMono(RealMappingDto.class)
+    .map(realMappingDto -> realMappingDto.getRealmMappings())
+    .defaultIfEmpty(List.of())
+    .flatMapMany(roleMappings -> Flux.fromIterable(roleMappings)
+    .filter(roleMapping -> roleMapping.getName().equals("default-roles-portfoliodev"))
+      .map(roleMapping -> roleMapping.getName())
+      )
+    .log();
+  }
+
 
   @Override
   public Mono<UserDto> registerUser(UserDto userDto) {
