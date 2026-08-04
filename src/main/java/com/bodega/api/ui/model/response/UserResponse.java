@@ -24,6 +24,7 @@ public class UserResponse {
   private String username;
   private Boolean isGoogleAccount;
   private List<UserSessionResponse> sessions;
+  private List<String> roles;
 
   @Getter
   @Setter

@@ -14,7 +14,6 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Predicate;
@@ -57,32 +56,23 @@ public class UserServiceImpl implements UserService {
     .retrieve()
     .bodyToFlux(UserKeycloak.class)
     .filter(predicate.negate())
-    .collectList()
-    .flatMapMany(users -> {
-      var sessionsFlux = users.stream().map(user -> this.getUserSessions(user.getId(), token)).toList();
-      // var rolesFlux = users.stream().map(user -> this.getUserRoles(user.getId(), token)).toList();
-      return Flux.zip(sessionsFlux, objects -> {
+    .flatMap(user -> {
 
-        List<UserDto> usersResponse = new ArrayList<>(List.of());
+      var sessionsFlux = this.getUserSessions(user.getId(), token);
+      var roleFlux = this.getUserRoles(user.getId(), token);
 
-        for (int i = 0; i < objects.length; i++) {
-          var userId = users.get(i);
-          List<UserDto.UserSessionDto> sessions = (List<UserDto.UserSessionDto>) objects[i];
-          usersResponse.add(UserDto.builder()
-            .id(UUID.fromString(userId.getId()))
-            .firstName(userId.getFirstName())
-            .lastName(userId.getLastName())
-            .email(userId.getEmail())
-            .emailVerified(userId.getEmailVerified())
-            .enabled(userId.getEnabled())
-            .username(userId.getUsername())
-            .sessions(sessions)
-            .build());
-        }
-
-        return usersResponse;
-      })
-      .flatMap(Flux::fromIterable);
+      return Mono.zip(sessionsFlux, roleFlux)
+      .map(tuple -> UserDto.builder()
+                .id(UUID.fromString(user.getId()))
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .emailVerified(user.getEmailVerified())
+                .enabled(user.getEnabled())
+                .username(user.getUsername())
+                .sessions(tuple.getT1())
+                .roles(tuple.getT2())
+                .build());
     })
     .log();
   }
@@ -99,7 +89,7 @@ public class UserServiceImpl implements UserService {
     .log();
   }
 
-  public Flux<String> getUserRoles(String userId, String token) {
+  public Mono<List<String>> getUserRoles(String userId, String token) {
     String urlRoles = "/admin/realms/"+ keycloakProperty.getRealm() + "/users/" + userId + "/role-mappings";
     return webClientKeycloak
     .get()
@@ -109,10 +99,11 @@ public class UserServiceImpl implements UserService {
     .bodyToMono(RealMappingDto.class)
     .map(realMappingDto -> realMappingDto.getRealmMappings())
     .defaultIfEmpty(List.of())
-    .flatMapMany(roleMappings -> Flux.fromIterable(roleMappings)
-    .filter(roleMapping -> roleMapping.getName().equals("default-roles-portfoliodev"))
-      .map(roleMapping -> roleMapping.getName())
-      )
+    .flatMapMany(roleMappings -> 
+      Flux.fromIterable(roleMappings)
+        .filter(roleMapping -> !roleMapping.getName().equals("default-roles-portfoliodev"))
+        .map(roleMapping -> roleMapping.getName()))
+        .collectList()
     .log();
   }
 
