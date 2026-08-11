@@ -2,7 +2,6 @@ package com.bodega.api.ui.controller;
 
 import com.bodega.api.service.UserService;
 import com.bodega.api.shared.dto.UserDto;
-import com.bodega.api.shared.dto.UserKeycloak;
 import com.bodega.api.ui.model.request.UserRequest;
 import com.bodega.api.ui.model.response.UserResponse;
 
@@ -18,6 +17,8 @@ import java.util.List;
 import java.util.UUID;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 
 import reactor.core.publisher.Mono;
 
+@Slf4j
 @Tag(name = "User", description = "Endpoint methods for users feature")
 @RequiredArgsConstructor
 @RestController
@@ -48,7 +50,7 @@ public class UserController {
       .map(userDto -> mapper.map(userDto, UserResponse.class));
   }
 
-    @Operation(summary = "List of users registered in Keycloak")
+  @Operation(summary = "List of users registered in Keycloak")
   @ApiResponses(value = {
   		@ApiResponse(responseCode = "200", description = "Get all users from keycloak"),
   		@ApiResponse(responseCode = "400", description = "No users found"),
@@ -56,10 +58,12 @@ public class UserController {
   })
   @PreAuthorize("!hasRole('USER')")
   @GetMapping("/keycloak")
-  public Mono<ResponseEntity<List<UserKeycloak>>> findUsers() {
+  public Mono<ResponseEntity<List<UserResponse>>> findUsers() {
     return userService.findUsers()
     .collectList()
-    .map(users -> ResponseEntity.ok().body(users));
+    .map(users -> ResponseEntity.ok().body(users.stream()
+      .map(userDto -> mapper.map(userDto, UserResponse.class))
+      .toList()));
   }
 
   @Operation(summary = "Delete user in Keycloak")
