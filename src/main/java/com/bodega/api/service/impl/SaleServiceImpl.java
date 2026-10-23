@@ -3,12 +3,15 @@ package com.bodega.api.service.impl;
 import com.bodega.api.config.PaypalPropertyConfig;
 import com.bodega.api.io.SaleDetailEntity;
 import com.bodega.api.io.SaleEntity;
+import com.bodega.api.io.ShipmentEntity;
 import com.bodega.api.repository.SaleRepository;
 import com.bodega.api.service.ProductService;
 import com.bodega.api.service.SaleService;
 import com.bodega.api.shared.dto.ProductDto;
 import com.bodega.api.shared.dto.SaleDto;
+import com.bodega.api.shared.enums.OrderStatus;
 import com.bodega.api.shared.report.SaleReport;
+import com.bodega.api.shared.utils.Helpers;
 import com.bodega.api.ui.model.request.CreateOrderRequest;
 import com.bodega.api.ui.model.request.ReportSaleRequest;
 import com.bodega.api.ui.model.request.SaleRequest;
@@ -137,8 +140,27 @@ public class SaleServiceImpl implements SaleService {
       })
       .toList();
     saleEntity.setSaleDetail(saleDetails);
+    saleEntity.setShipments(List.of(savePendingOrder(saleDto)));
     var savedSale = repository.save(saleEntity);
     return Mono.just(mapper.map(savedSale, SaleDto.class));
+  }
+
+  public ShipmentEntity savePendingOrder(SaleDto saleDto) {
+    return ShipmentEntity
+    .builder()
+    .id(UUID.randomUUID())
+    .orderId(saleDto.getId())
+    .status(OrderStatus.PENDING)
+    .trackingNumber(this.createTrackingNumber())
+    .build();
+  }
+
+  public String createTrackingNumber() {
+    StringBuilder trackingNumber = new StringBuilder();
+    trackingNumber.append(Helpers.generateRandomLetters(2));
+    trackingNumber.append(Helpers.generateRandomDigits(9));
+    trackingNumber.append(Helpers.generateRandomLetters(2));
+    return trackingNumber.toString();
   }
 
   @Override

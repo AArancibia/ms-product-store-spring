@@ -1,0 +1,9 @@
+ALTER TABLE role
+ALTER COLUMN created_date TYPE TIMESTAMPTZ,
+ALTER COLUMN created_date SET DEFAULT NOW();
+	
+ALTER TABLE
+	role
+ALTER COLUMN
+	updated_date TYPE TIMESTAMPTZ;
+DROP TABLE usuarios_accesos;

@@ -15,8 +15,10 @@ public class SaleDto {
     private UUID id;
     private String code;
     private UUID userId;
+    private UserDto user;
     private int salePrice;
     private String paypalId;
     private LocalDateTime dateRegister;
     private List<SaleDetailDto> saleDetail;
+    private List<ShipmentDto> shipments;
 }

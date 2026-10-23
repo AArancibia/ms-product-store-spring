@@ -40,4 +40,6 @@ public class SaleEntity implements Serializable {
     @JoinColumn(name = "usuario_id", referencedColumnName = "id", insertable = false, updatable = false)
     private UserEntity user;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order",  fetch = FetchType.EAGER)
+    private List<ShipmentEntity> shipments;
 }

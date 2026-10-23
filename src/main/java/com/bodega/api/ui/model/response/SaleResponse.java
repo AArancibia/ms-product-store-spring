@@ -15,4 +15,6 @@ public class SaleResponse {
   private int salePrice;
   private LocalDateTime dateRegister;
   private List<SaleDetailResponse> saleDetail;
+  private UserResponse user;
+  private List<ShipmentResponse> shipments;
 }
